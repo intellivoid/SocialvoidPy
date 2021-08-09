@@ -45,3 +45,6 @@ class SocialvoidClient:
 
     def get_session(self):
         return types.Session(**self.make_request(Request('session.get', {'session_identification': create_session_id(self.session)})).unwrap())
+
+    def logout(self):
+        return self.make_request(Request('session.logout', {'session_identification': create_session_id(self.session)})).unwrap()
