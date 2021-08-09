@@ -48,3 +48,9 @@ class SocialvoidClient:
 
     def logout(self):
         return self.make_request(Request('session.logout', {'session_identification': create_session_id(self.session)})).unwrap()
+
+    def login(self, username, password, otp=None):
+        params = {'session_identification': create_session_id(self.session), 'username': username, 'password': password}
+        if otp is not None:
+            params['otp'] = otp
+        return self.make_request(Request('session.authenticate_user', params)).unwrap()
