@@ -1,7 +1,8 @@
 import secrets
 import requests
+from . import types
 from .request import Request
-from .utils import parse_jsonrpc_response, serialize_request, get_platform
+from .utils import parse_jsonrpc_response, serialize_request, get_platform, create_session_id
 from .session import Session
 from .version import version
 
@@ -41,3 +42,6 @@ class SocialvoidClient:
         self.session.session_id = resp['id']
         self.session.session_challenge = resp['challenge']
         self._save_session()
+
+    def get_session(self):
+        return types.Session(**self.make_request(Request('session.get', {'session_identification': create_session_id(self.session)})).unwrap())
