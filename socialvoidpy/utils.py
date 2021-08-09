@@ -1,6 +1,8 @@
 import json
+import platform
 from .request import Request
 from .response import Response
+from .session_challenge import answer_challenge
 
 def parse_jsonrpc_response(body, batch):
     if not body:
@@ -23,3 +25,9 @@ def serialize_request(request):
     if request.params is not None:
         body['params'] = request.params
     return body
+
+def get_platform():
+    return platform.system() or 'Unknown'
+
+def create_session_id(session):
+    return {'session_id': session.session_id, 'client_public_hash': session.public_hash, 'challenge_answer': answer_challenge(session.private_hash, session.session_challenge)}

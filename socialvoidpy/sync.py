@@ -1,6 +1,9 @@
+import secrets
 import requests
-from .utils import parse_jsonrpc_response, serialize_request
+from .request import Request
+from .utils import parse_jsonrpc_response, serialize_request, get_platform
 from .session import Session
+from .version import version
 
 class SocialvoidClient:
     # TODO Change endpoint parameter to an actual instance
@@ -28,3 +31,13 @@ class SocialvoidClient:
         body = serialize_request(requests)
         resp = self.http_session.post(self.endpoint, json=body)
         return parse_jsonrpc_response(resp.text, batch)
+
+    def create_session(self, name='SocialvoidPy', version=version, platform=None):
+        if platform is None:
+            platform = get_platform()
+        self.session.public_hash = public_hash = secrets.token_hex(64)
+        self.session.private_hash = private_hash = secrets.token_hex(64)
+        resp = self.make_request(Request('session.create', {'public_hash': public_hash, 'private_hash': private_hash, 'name': name, 'version': version, 'platform': platform})).unwrap()
+        self.session.session_id = resp['id']
+        self.session.session_challenge = resp['challenge']
+        self._save_session()
