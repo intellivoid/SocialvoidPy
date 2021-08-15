@@ -26,8 +26,8 @@ class Session:
     def create(self, name='SocialvoidPy', version=version, platform=None):
         if platform is None:
             platform = get_platform()
-        self.public_hash = public_hash = secrets.token_hex(64)
-        self.private_hash = private_hash = secrets.token_hex(64)
+        self.public_hash = public_hash = secrets.token_hex(32)
+        self.private_hash = private_hash = secrets.token_hex(32)
         resp = self._sv.make_request(Request('session.create', {'public_hash': public_hash, 'private_hash': private_hash, 'name': name, 'version': version, 'platform': platform})).unwrap()
         self.session_id = resp['id']
         self.session_challenge = resp['challenge']
