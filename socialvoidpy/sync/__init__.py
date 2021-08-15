@@ -13,7 +13,10 @@ class SocialvoidClient:
         if filename is None:
             self.session = Session(self)
         else:
-            self.session = Session.load(self, filename)
+            try:
+                self.session = Session.load(self, filename)
+            except FileNotFoundError:
+                self.session = Session(self)
         self._session_filename = filename
 
     def _save_session(self):
