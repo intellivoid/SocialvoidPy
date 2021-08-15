@@ -1,4 +1,4 @@
-from .general_error import GeneralError
+from .general_error import *
 from .jsonrpc_error import *
 from .authentication_error import *
 from .network_error import *

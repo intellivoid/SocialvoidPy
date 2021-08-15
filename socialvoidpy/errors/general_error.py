@@ -3,3 +3,7 @@ class GeneralError(Exception):
         super().__init__(message)
         self.code = code
         self.data = data
+
+# Can this go somewhere else?
+class SessionDoesNotExist(GeneralError):
+    pass
