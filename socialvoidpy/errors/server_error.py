@@ -5,3 +5,6 @@ class ServerError(GeneralError):
 
 class InternalServerError(ServerError):
     pass
+
+class DocumentUpload(ServerError):
+    pass

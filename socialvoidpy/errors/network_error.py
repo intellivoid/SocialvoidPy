@@ -17,3 +17,9 @@ class AlreadyReposted(NetworkError):
 
 class FileUploadError(NetworkError):
     pass
+
+class DocumentNotFound(NetworkError):
+    pass
+
+class AccessDenied(NetworkError):
+    pass

@@ -30,8 +30,11 @@ ERROR_MAP = {
     12546: PostDeleted,
     12547: AlreadyReposted,
     12548: FileUploadError,
+    12549: DocumentNotFound,
+    12550: AccessDenied,
     # Server Errors
     16384: InternalServerError,
+    16385: DocumentUpload,
     # Validation Errors
     8448: InvalidUsername,
     8449: InvalidPassword,
@@ -47,4 +50,8 @@ ERROR_MAP = {
     8459: InvalidVersion,
     8460: InvalidClientName,
     8461: InvalidSessionIdentification,
+    8462: InvalidFileForProfilePicture,
+    8463: FileTooLarge,
+    8464: InvalidHelpDocumentId,
+    8465: AgreementRequired,
 }

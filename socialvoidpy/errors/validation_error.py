@@ -44,3 +44,15 @@ class InvalidClientName(ValidationError):
 
 class InvalidSessionIdentification(ValidationError):
     pass
+
+class InvalidFileForProfilePicture(ValidationError):
+    pass
+
+class FileTooLarge(ValidationError):
+    pass
+
+class InvalidHelpDocumentId(ValidationError):
+    pass
+
+class AgreementRequired(ValidationError):
+    pass
