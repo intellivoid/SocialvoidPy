@@ -4,9 +4,8 @@ from ..utils import parse_jsonrpc_response, serialize_request
 from .session import Session
 
 class SocialvoidClient:
-    # TODO Change endpoint parameter to an actual instance
-    def __init__(self, filename=None, endpoint='http://127.0.0.1:6800/jsonrpc', http_session=None):
-        self.endpoint = endpoint
+    def __init__(self, filename=None, rpc_endpoint='http://socialvoid.qlg1.com:5601/', http_session=None):
+        self.rpc_endpoint = rpc_endpoint
         if http_session is None:
             http_session = requests.Session()
         self.http_session = http_session
@@ -30,5 +29,5 @@ class SocialvoidClient:
         if not batch:
             requests = requests[0]
         body = serialize_request(requests)
-        resp = self.http_session.post(self.endpoint, json=body)
+        resp = self.http_session.post(self.rpc_endpoint, json=body)
         return parse_jsonrpc_response(resp.text, batch)
