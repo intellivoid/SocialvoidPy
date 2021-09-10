@@ -23,7 +23,7 @@ class Session:
     def load(cls, sv, filename):
         with open(filename) as file:
             data = json.load(file)
-        return cls(sv, **data)
+        return cls(sv, data.get('public_hash'), data.get('private_hash'), data.get('session_id'), data.get('session_challenge'), data.get('session_exists'))
 
     def save(self, filename):
         with open(filename, 'w+') as file:
