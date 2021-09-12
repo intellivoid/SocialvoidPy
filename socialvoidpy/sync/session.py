@@ -54,3 +54,8 @@ class Session:
         if otp is not None:
             params['otp'] = otp
         return self._sv.make_request(Request('session.authenticate_user', params)).unwrap()
+
+    def register(self, terms_of_service_id, username, password, first_name, last_name=None):
+        self._assert_existence()
+        params = {'session_identification': create_session_id(self), 'terms_of_service_id': terms_of_service_id, 'terms_of_service_agree': True, 'username': username, 'password': password, 'first_name': first_name, 'last_name': last_name}
+        return types.Peer.from_json(self._sv.make_request(Request('session.register', params)).unwrap())
