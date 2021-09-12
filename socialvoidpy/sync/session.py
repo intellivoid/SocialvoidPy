@@ -42,7 +42,7 @@ class Session:
 
     def get(self):
         self._assert_existence()
-        return types.Session(**self._sv.make_request(Request('session.get', {'session_identification': create_session_id(self)})).unwrap())
+        return types.Session.from_json(self._sv.make_request(Request('session.get', {'session_identification': create_session_id(self)})).unwrap())
 
     def logout(self):
         self._assert_existence()

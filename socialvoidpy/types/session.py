@@ -1,9 +1,15 @@
-from datetime import datetime
+import datetime
+from dataclasses import dataclass
+from .base_class import BaseClass
 
-class Session:
-    def __init__(self, id, flags, authenticated, created, expires):
-        self.id = id
-        self.flags = flags
-        self.authenticated = authenticated
-        self.created = datetime.fromtimestamp(created)
-        self.expires = datetime.fromtimestamp(expires)
+@dataclass
+class Session(BaseClass):
+    id: str
+    flags: list[str]
+    authenticated: bool
+    created: datetime.datetime
+    expires: datetime.datetime
+
+    @classmethod
+    def from_json(cls, resp):
+        return cls(resp['id'], resp['flags'], resp['authenticated'], datetime.datetime.fromtimestamp(resp['created']), datetime.datetime.fromtimestamp(resp['expires']))
