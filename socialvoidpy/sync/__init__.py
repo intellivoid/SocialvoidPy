@@ -4,6 +4,7 @@ from ..utils import parse_jsonrpc_response, serialize_request
 from .session import Session
 from .help import Help
 from .network import Network
+from .account import Account
 
 class SocialvoidClient:
     def __init__(self, filename=None, rpc_endpoint='http://socialvoid.qlg1.com:5601/', http_session=None):
@@ -21,6 +22,7 @@ class SocialvoidClient:
         self._session_filename = filename
         self.help = Help(self)
         self.network = Network(self)
+        self.account = Account(self)
 
     def _save_session(self):
         if self._session_filename is not None:
