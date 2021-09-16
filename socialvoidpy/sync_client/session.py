@@ -1,7 +1,6 @@
 import json
 import secrets
 from .. import types
-from ..errors import SessionDoesNotExist
 from ..request import Request
 from ..utils import get_platform, create_session_id
 from ..version import version
@@ -14,10 +13,6 @@ class Session:
         self.session_id = session_id
         self.session_challenge = session_challenge
         self.session_exists = session_exists
-
-    def _assert_existence(self):
-        if not self.session_exists:
-            raise SessionDoesNotExist(None, 'Session does not exist', None)
 
     @classmethod
     def load(cls, sv, filename):
@@ -41,21 +36,17 @@ class Session:
         self._sv._save_session()
 
     def get(self):
-        self._assert_existence()
         return types.Session.from_json(self._sv.make_request(Request('session.get', {'session_identification': create_session_id(self)})).unwrap())
 
     def logout(self):
-        self._assert_existence()
         return self._sv.make_request(Request('session.logout', {'session_identification': create_session_id(self)})).unwrap()
 
     def authenticate_user(self, username, password, otp=None):
-        self._assert_existence()
         params = {'session_identification': create_session_id(self), 'username': username, 'password': password}
         if otp is not None:
             params['otp'] = otp
         return self._sv.make_request(Request('session.authenticate_user', params)).unwrap()
 
     def register(self, terms_of_service_id, username, password, first_name, last_name=None):
-        self._assert_existence()
         params = {'session_identification': create_session_id(self), 'terms_of_service_id': terms_of_service_id, 'terms_of_service_agree': True, 'username': username, 'password': password, 'first_name': first_name, 'last_name': last_name}
         return types.Peer.from_json(self._sv.make_request(Request('session.register', params)).unwrap())

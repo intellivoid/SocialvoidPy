@@ -7,5 +7,4 @@ class Network:
         self._sv = sv
 
     def get_me(self):
-        self._sv.session.assert_existence()
         return types.Peer.from_json(self._sv.make_request(Request('network.get_me', {'session_identification': create_session_id(self._sv.session)})).unwrap())

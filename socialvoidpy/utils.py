@@ -4,6 +4,7 @@ from .request import Request
 from .response import Response
 from .session_challenge import answer_challenge
 from .types.text_entity import TEXT_ENTITY_MAP, _TextEntity
+from .errors import SessionDoesNotExist
 
 def parse_jsonrpc_response(body, batch):
     if not body:
@@ -31,6 +32,8 @@ def get_platform():
     return platform.system() or 'Unknown'
 
 def create_session_id(session):
+    if not session.session_exists:
+        raise SessionDoesNotExist(None, 'Session does not exist', None)
     return {'session_id': session.session_id, 'client_public_hash': session.public_hash, 'challenge_answer': answer_challenge(session.private_hash, session.session_challenge)}
 
 def raw_textentities_to_types(entities):
