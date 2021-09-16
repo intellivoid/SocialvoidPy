@@ -46,7 +46,7 @@ ERROR_MAP = {
     8455: InvalidPostText,
     8456: InvalidClientPublicHash,
     8457: InvalidClientPrivateHash,
-    8464: InvalidPlatform,
+    8458: InvalidPlatform,
     8459: InvalidVersion,
     8460: InvalidClientName,
     8461: InvalidSessionIdentification,
