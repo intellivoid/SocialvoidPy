@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from .base_class import BaseClass
 
+
 @dataclass
 class ServerInformation(BaseClass):
     network_name: str
@@ -12,4 +13,11 @@ class ServerInformation(BaseClass):
 
     @classmethod
     def from_json(cls, resp: dict):
-        return cls(resp['network_name'], resp['protocol_version'], resp['cdn_server'], resp['upload_max_file_size'], resp['unauthorized_session_ttl'], resp['authorized_session_ttl'])
+        return cls(
+            resp["network_name"],
+            resp["protocol_version"],
+            resp["cdn_server"],
+            resp["upload_max_file_size"],
+            resp["unauthorized_session_ttl"],
+            resp["authorized_session_ttl"],
+        )

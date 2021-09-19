@@ -1,5 +1,6 @@
 import abc
 
+
 class BaseClass(abc.ABC):
     @classmethod
     @abc.abstractmethod

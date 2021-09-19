@@ -3,6 +3,7 @@ from .text_entity import _TextEntity
 from .base_class import BaseClass
 from ..utils import raw_textentities_to_types
 
+
 @dataclass
 class HelpDocument(BaseClass):
     id: str
@@ -11,4 +12,6 @@ class HelpDocument(BaseClass):
 
     @classmethod
     def from_json(cls, resp: dict):
-        return cls(resp['id'], resp['text'], raw_textentities_to_types(resp['entities']))
+        return cls(
+            resp["id"], resp["text"], raw_textentities_to_types(resp["entities"])
+        )

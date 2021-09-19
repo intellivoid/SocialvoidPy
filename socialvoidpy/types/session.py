@@ -2,6 +2,7 @@ import datetime
 from dataclasses import dataclass
 from .base_class import BaseClass
 
+
 @dataclass
 class Session(BaseClass):
     id: str
@@ -12,4 +13,10 @@ class Session(BaseClass):
 
     @classmethod
     def from_json(cls, resp: dict):
-        return cls(resp['id'], resp['flags'], resp['authenticated'], datetime.datetime.fromtimestamp(resp['created']), datetime.datetime.fromtimestamp(resp['expires']))
+        return cls(
+            resp["id"],
+            resp["flags"],
+            resp["authenticated"],
+            datetime.datetime.fromtimestamp(resp["created"]),
+            datetime.datetime.fromtimestamp(resp["expires"]),
+        )

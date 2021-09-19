@@ -2,6 +2,7 @@ import datetime
 from dataclasses import dataclass
 from .base_class import BaseClass
 
+
 @dataclass
 class Document(BaseClass):
     id: str
@@ -14,4 +15,12 @@ class Document(BaseClass):
 
     @classmethod
     def from_json(cls, resp: dict):
-        return cls(resp['id'], resp['file_mime'], resp['file_name'], resp['file_size'], resp['file_type'], resp['flags'], datetime.datetime.fromtimestamp(resp['created']))
+        return cls(
+            resp["id"],
+            resp["file_mime"],
+            resp["file_name"],
+            resp["file_size"],
+            resp["file_type"],
+            resp["flags"],
+            datetime.datetime.fromtimestamp(resp["created"]),
+        )

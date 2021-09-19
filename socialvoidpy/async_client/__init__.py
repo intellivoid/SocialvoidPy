@@ -9,8 +9,14 @@ from .network import Network
 from .account import Account
 from .cloud import Cloud
 
+
 class AsyncSocialvoidClient:
-    def __init__(self, filename: typing.Optional[str]=None, rpc_endpoint: str='http://socialvoid.qlg1.com:5601/', httpx_client: typing.Optional[httpx.AsyncClient]=None):
+    def __init__(
+        self,
+        filename: typing.Optional[str] = None,
+        rpc_endpoint: str = "http://socialvoid.qlg1.com:5601/",
+        httpx_client: typing.Optional[httpx.AsyncClient] = None,
+    ):
         self.rpc_endpoint = rpc_endpoint
         if httpx_client is None:
             httpx_client = httpx.AsyncClient()
@@ -37,7 +43,7 @@ class AsyncSocialvoidClient:
 
     async def make_request(self, *requests) -> typing.Union[list[Response], Response]:
         if not requests:
-            raise ValueError('requests should not be empty')
+            raise ValueError("requests should not be empty")
         batch = len(requests) != 1
         if not batch:
             requests = requests[0]
