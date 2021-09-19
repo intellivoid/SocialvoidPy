@@ -11,5 +11,5 @@ class Session(BaseClass):
     expires: datetime.datetime
 
     @classmethod
-    def from_json(cls, resp):
+    def from_json(cls, resp: dict):
         return cls(resp['id'], resp['flags'], resp['authenticated'], datetime.datetime.fromtimestamp(resp['created']), datetime.datetime.fromtimestamp(resp['expires']))

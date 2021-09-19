@@ -1,5 +1,7 @@
+import typing
+
 class GeneralError(Exception):
-    def __init__(self, code, message, data):
+    def __init__(self, code: typing.Optional[int], message: str, data: typing.Optional[typing.Union[dict, list]]):
         super().__init__(message)
         self.code = code
         self.data = data

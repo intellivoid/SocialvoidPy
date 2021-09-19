@@ -1,15 +1,16 @@
+import typing
 from .errors import ERROR_MAP, GeneralError, JSONRPCError
 
 class Response:
-    def __init__(self, body):
-        self.id = body['id']
-        self.success = 'error' not in body
-        self.data = body.get('result')
-        self.error = body.get('error')
+    def __init__(self, body: dict):
+        self.id: str = body['id']
+        self.success: bool = 'error' not in body
+        self.data: typing.Optional[typing.Union[dict, list]] = body.get('result')
+        self.error: typing.Optional[dict] = body.get('error')
         self.raw = body
 
     # Maybe a different name?
-    def unwrap(self):
+    def unwrap(self) -> typing.Union[dict, list]:
         if self.success:
             return self.data
         if self.error['code'] in ERROR_MAP:

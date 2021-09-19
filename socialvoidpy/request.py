@@ -1,7 +1,8 @@
 import time
+import typing
 
 class Request:
-    def __init__(self, method, params=None, notification=False):
+    def __init__(self, method: str, params: typing.Optional[typing.Union[dict, list]]=None, notification: bool=False):
         self.method = method
         self.params = params
-        self.id = str(time.monotonic()) if not notification else None
+        self.id: typing.Optional[str] = str(time.monotonic()) if not notification else None

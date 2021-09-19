@@ -9,5 +9,5 @@ class DisplayPictureSize(BaseClass):
     document: Document
 
     @classmethod
-    def from_json(cls, resp):
+    def from_json(cls, resp: dict):
         return cls(resp['width'], resp['height'], Document.from_json(resp['document']))

@@ -13,5 +13,5 @@ class Document(BaseClass):
     created: datetime.datetime
 
     @classmethod
-    def from_json(cls, resp):
+    def from_json(cls, resp: dict):
         return cls(resp['id'], resp['file_mime'], resp['file_name'], resp['file_size'], resp['file_type'], resp['flags'], datetime.datetime.fromtimestamp(resp['created']))

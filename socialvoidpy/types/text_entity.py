@@ -15,7 +15,7 @@ class _TextEntity(BaseClass):
             raise ValueError('value must not be None')
 
     @classmethod
-    def from_json(cls, resp):
+    def from_json(cls, resp: dict):
         return cls(resp['offset'], resp['length'], resp['value'], resp['type'])
 
 @dataclass

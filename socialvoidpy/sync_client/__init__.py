@@ -1,6 +1,8 @@
+import typing
 import secrets
 import httpx
 from ..utils import parse_jsonrpc_response, serialize_request
+from ..response import Response
 from .session import Session
 from .help import Help
 from .network import Network
@@ -8,7 +10,7 @@ from .account import Account
 from .cloud import Cloud
 
 class SocialvoidClient:
-    def __init__(self, filename=None, rpc_endpoint='http://socialvoid.qlg1.com:5601/', httpx_client=None):
+    def __init__(self, filename: typing.Optional[str]=None, rpc_endpoint: str='http://socialvoid.qlg1.com:5601/', httpx_client: typing.Optional[httpx.Client]=None):
         self.rpc_endpoint = rpc_endpoint
         if httpx_client is None:
             httpx_client = httpx.Client()
@@ -36,7 +38,7 @@ class SocialvoidClient:
         if self._session_filename is not None:
             self.session.save(self._session_filename)
 
-    def make_request(self, *requests):
+    def make_request(self, *requests) -> typing.Union[list[Response], Response]:
         if not requests:
             raise ValueError('requests should not be empty')
         batch = len(requests) != 1

@@ -10,5 +10,5 @@ class HelpDocument(BaseClass):
     entities: list[_TextEntity]
 
     @classmethod
-    def from_json(cls, resp):
+    def from_json(cls, resp: dict):
         return cls(resp['id'], resp['text'], raw_textentities_to_types(resp['entities']))

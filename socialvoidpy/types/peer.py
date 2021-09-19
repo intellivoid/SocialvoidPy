@@ -12,5 +12,5 @@ class Peer(BaseClass):
     flags: list[str]
 
     @classmethod
-    def from_json(cls, resp):
+    def from_json(cls, resp: dict):
         return cls(resp['id'], resp['type'], resp['name'], resp['username'], [DisplayPictureSize.from_json(i) for i in resp['display_picture_sizes']], resp['flags'])
