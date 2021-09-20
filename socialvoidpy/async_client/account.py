@@ -3,6 +3,9 @@ from .. import types
 from ..utils import create_session_id
 from ..request import Request
 
+if typing.TYPE_CHECKING:
+    from . import AsyncSocialvoidClient
+
 
 class Account:
     def __init__(self, sv: "AsyncSocialvoidClient"):

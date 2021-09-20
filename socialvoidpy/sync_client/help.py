@@ -1,5 +1,9 @@
+import typing
 from .. import types
 from ..request import Request
+
+if typing.TYPE_CHECKING:
+    from . import SocialvoidClient
 
 
 class Help:

@@ -6,6 +6,9 @@ from ..request import Request
 from ..utils import get_platform, create_session_id
 from ..version import version
 
+if typing.TYPE_CHECKING:
+    from . import SocialvoidClient
+
 
 class Session:
     def __init__(

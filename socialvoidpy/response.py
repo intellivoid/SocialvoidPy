@@ -3,7 +3,9 @@ from .errors import ERROR_MAP, GeneralError, JSONRPCError
 
 
 class Response:
-    def __init__(self, body: dict):
+    def __init__(
+        self, body: dict[str, typing.Union[str, int, dict[str, typing.Any], list]]
+    ):
         self.id: str = body["id"]
         self.success: bool = "error" not in body
         self.data: typing.Optional[typing.Union[dict, list]] = body.get("result")
@@ -11,7 +13,7 @@ class Response:
         self.raw = body
 
     # Maybe a different name?
-    def unwrap(self) -> typing.Union[dict, list]:
+    def unwrap(self) -> typing.Union[dict[str, typing.Any], list]:
         if self.success:
             return self.data
         if self.error["code"] in ERROR_MAP:

@@ -2,6 +2,9 @@ import typing
 from .. import types
 from ..request import Request
 
+if typing.TYPE_CHECKING:
+    from . import AsyncSocialvoidClient
+
 
 class Help:
     def __init__(self, sv: "AsyncSocialvoidClient"):
