@@ -23,7 +23,7 @@ def parse_jsonrpc_response(
     return None
 
 
-def serialize_request(request: Request) -> dict:
+def serialize_request(request: Request) -> typing.Union[list[dict], dict]:
     if hasattr(request, "__iter__"):
         return list(map(serialize_request, request))
     body = {"jsonrpc": "2.0", "method": request.method}
