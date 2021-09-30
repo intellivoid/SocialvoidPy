@@ -1,6 +1,7 @@
 import secrets
 import typing
 import httpx
+from ..request import Request
 from ..response import Response
 from ..utils import parse_jsonrpc_response, serialize_request
 from .session import Session
@@ -41,7 +42,9 @@ class AsyncSocialvoidClient:
         if self._session_filename is not None:
             self.session.save(self._session_filename)
 
-    async def make_request(self, *requests) -> typing.Union[list[Response], Response]:
+    async def make_request(
+        self, *requests: typing.Sequence[Request]
+    ) -> typing.Union[list[Response], Response]:
         if not requests:
             raise ValueError("requests should not be empty")
         batch = len(requests) != 1
