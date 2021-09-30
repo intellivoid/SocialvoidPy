@@ -89,12 +89,14 @@ class Session:
             ).unwrap()
         )
 
-    def logout(self) -> bool:
-        return self._sv.make_request(
+    def logout(self) -> None:
+        self._sv.make_request(
             Request(
-                "session.logout", {"session_identification": create_session_id(self)}
+                "session.logout",
+                {"session_identification": create_session_id(self)},
+                notification=True,
             )
-        ).unwrap()
+        )
 
     def authenticate_user(
         self, username: str, password: str, otp: typing.Optional[str] = None

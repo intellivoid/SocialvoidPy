@@ -94,15 +94,14 @@ class Session:
             ).unwrap()
         )
 
-    async def logout(self) -> bool:
-        return (
-            await self._sv.make_request(
-                Request(
-                    "session.logout",
-                    {"session_identification": create_session_id(self)},
-                )
+    async def logout(self) -> None:
+        await self._sv.make_request(
+            Request(
+                "session.logout",
+                {"session_identification": create_session_id(self)},
+                notification=True,
             )
-        ).unwrap()
+        )
 
     async def authenticate_user(
         self, username: str, password: str, otp: typing.Optional[str] = None
