@@ -23,5 +23,5 @@ class Document(BaseClass):
             resp["file_size"],
             resp["file_type"],
             resp["flags"],
-            datetime.datetime.fromtimestamp(resp["created"]),
+            datetime.datetime.fromtimestamp(resp["created_timestamp"]),
         )
