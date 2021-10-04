@@ -1,12 +1,11 @@
 from setuptools import find_packages, setup
-import socialvoidpy
 
 with open("README.md") as file:
     long_description = file.read()
 
 setup(
     name="socialvoidpy",
-    version=socialvoidpy.__version__,
+    version="0.1.0",
     description="Official socialvoid python library",
     long_description=long_description,
     long_description_content_type="text/markdown",
