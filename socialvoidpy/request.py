@@ -6,7 +6,9 @@ class Request:
     def __init__(
         self,
         method: str,
-        params: typing.Optional[typing.Union[dict[str, typing.Any], list]] = None,
+        params: typing.Optional[
+            typing.Union[typing.Dict[str, typing.Any], list]
+        ] = None,
         notification: bool = False,
     ):
         self.method = method

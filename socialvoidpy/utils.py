@@ -10,7 +10,7 @@ from .errors import SessionDoesNotExist
 
 def parse_jsonrpc_response(
     body: str, batch: bool
-) -> typing.Optional[typing.Union[list[Response], Response]]:
+) -> typing.Optional[typing.Union[typing.List[Response], Response]]:
     if not body:
         if batch:
             return []
@@ -23,7 +23,7 @@ def parse_jsonrpc_response(
     return None
 
 
-def serialize_request(request: Request) -> typing.Union[list[dict], dict]:
+def serialize_request(request: Request) -> typing.Union[typing.List[dict], dict]:
     if hasattr(request, "__iter__"):
         return list(map(serialize_request, request))
     body = {"jsonrpc": "2.0", "method": request.method}
@@ -50,5 +50,5 @@ def create_session_id(session) -> dict:
     }
 
 
-def raw_textentities_to_types(entities) -> list[_TextEntity]:
+def raw_textentities_to_types(entities) -> typing.List[_TextEntity]:
     return [TEXT_ENTITY_MAP.get(i["type"], _TextEntity).from_json(i) for i in entities]

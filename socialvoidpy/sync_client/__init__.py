@@ -47,7 +47,7 @@ class SocialvoidClient:
 
     def make_request(
         self, *requests: typing.Sequence[Request]
-    ) -> typing.Union[list[Response], Response]:
+    ) -> typing.Union[typing.List[Response], Response]:
         if not requests:
             raise ValueError("requests should not be empty")
         batch = len(requests) != 1

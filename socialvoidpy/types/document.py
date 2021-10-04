@@ -1,3 +1,4 @@
+import typing
 import datetime
 from dataclasses import dataclass
 from .base_class import BaseClass
@@ -10,7 +11,7 @@ class Document(BaseClass):
     file_name: str
     file_size: int
     file_type: str
-    flags: list[str]
+    flags: typing.List[str]
     created: datetime.datetime
 
     @classmethod

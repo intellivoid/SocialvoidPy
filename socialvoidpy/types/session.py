@@ -1,3 +1,4 @@
+import typing
 import datetime
 from dataclasses import dataclass
 from .base_class import BaseClass
@@ -6,7 +7,7 @@ from .base_class import BaseClass
 @dataclass
 class Session(BaseClass):
     id: str
-    flags: list[str]
+    flags: typing.List[str]
     authenticated: bool
     created: datetime.datetime
     expires: datetime.datetime

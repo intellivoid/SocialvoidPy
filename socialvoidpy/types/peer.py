@@ -1,3 +1,4 @@
+import typing
 from dataclasses import dataclass
 from .display_picture_size import DisplayPictureSize
 from .base_class import BaseClass
@@ -9,8 +10,8 @@ class Peer(BaseClass):
     type: str
     name: str
     username: str
-    display_picture_sizes: list[DisplayPictureSize]
-    flags: list[str]
+    display_picture_sizes: typing.List[DisplayPictureSize]
+    flags: typing.List[str]
 
     @classmethod
     def from_json(cls, resp: dict):
