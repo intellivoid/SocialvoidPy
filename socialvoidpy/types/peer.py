@@ -6,6 +6,16 @@ from .base_class import BaseClass
 
 
 class PeerType(Enum):
+    """
+    A peer type
+
+    **Members:**
+
+    - **USER**: A normal user account
+    - **BOT**: A bot account that performs automated actions on the network
+    - **PROXY**: A proxy account that mirrors content from another platform
+    """
+
     USER = "USER"
     BOT = "BOT"
     PROXY = "PROXY"
@@ -13,6 +23,19 @@ class PeerType(Enum):
 
 @dataclass
 class Peer(BaseClass):
+    """
+    A peer (aka user)
+
+    **Members:**
+
+    - **id**: The peer's id
+    - **type**: The [`PeerType`](#peertype)
+    - **name**: The peer's name
+    - **username**: The peer's username
+    - **display_picture_sizes**: The peer's display/profile pictures
+    - **flags**: Flags set for the peer
+    """
+
     id: str
     type: PeerType
     name: str

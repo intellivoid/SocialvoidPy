@@ -8,10 +8,20 @@ if typing.TYPE_CHECKING:
 
 
 class Network:
+    """
+    `network` methods
+    """
+
     def __init__(self, sv: "SocialvoidClient"):
         self._sv = sv
 
     def get_me(self) -> types.Peer:
+        """
+        Gets the peer of the currently logged in account
+
+        **Returns:** [`types.Peer`](/types/#peer)
+        """
+
         return types.Peer.from_json(
             self._sv.make_request(
                 Request(

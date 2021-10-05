@@ -7,6 +7,16 @@ from ..utils import raw_textentities_to_types
 
 @dataclass
 class HelpDocument(BaseClass):
+    """
+    A help document (e.g. terms of service, privacy policy, community guidelines)
+
+    **Members:**
+
+    - **id**: ID of the help document
+    - **text**: Text of the help document
+    - **entities**: The text entities
+    """
+
     id: str
     text: str
     entities: typing.List[_TextEntity]

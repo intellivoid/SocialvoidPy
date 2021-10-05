@@ -11,6 +11,12 @@ if typing.TYPE_CHECKING:
 
 
 class Session:
+    """
+    `session` methods and session storage
+
+    See also: [Custom Session Storage](/custom_session_storage)
+    """
+
     def __init__(
         self,
         sv: "SocialvoidClient",
@@ -59,6 +65,22 @@ class Session:
         version: str = version,
         platform: typing.Optional[str] = None,
     ):
+        """
+        Creates a session
+
+        **Usage:**
+
+        ```python
+        >>> sv.session.create("Fridgevoid", "1.0.1", "Samsung Smart Fridge")
+        ```
+
+        **Parameters:**
+
+        - **name** *(optional)*: Name of client
+        - **version** *(optional)*: Version of client
+        - **platform** *(optional)*: Platform of client
+        """
+
         if platform is None:
             platform = get_platform()
         self.public_hash = public_hash = secrets.token_hex(32)
@@ -81,6 +103,12 @@ class Session:
         self._sv._save_session()
 
     def get(self) -> types.Session:
+        """
+        Gets information about the current session
+
+        **Returns:** [`types.Session`](/types/#Session)
+        """
+
         return types.Session.from_json(
             self._sv.make_request(
                 Request(
@@ -90,6 +118,10 @@ class Session:
         )
 
     def logout(self) -> None:
+        """
+        Logs out of the account associated to the session, or does nothing if not logged in
+        """
+
         self._sv.make_request(
             Request(
                 "session.logout",
@@ -101,6 +133,22 @@ class Session:
     def authenticate_user(
         self, username: str, password: str, otp: typing.Optional[str] = None
     ) -> bool:
+        """
+        Logs in to an account
+
+        **Usage:**
+
+        ```python
+        >>> sv.session.authenticate_user("blankie", "i need some sleep")
+        ```
+
+        **Parameters:**
+
+        - **username**: Username of the account to login to
+        - **password**: Password of the account to login to
+        - **otp** *(optional)*: Optional One-Time Password of the account to login to
+        """
+
         params = {
             "session_identification": create_session_id(self),
             "username": username,
@@ -120,6 +168,27 @@ class Session:
         first_name: str,
         last_name: typing.Optional[str] = None,
     ) -> types.Peer:
+        """
+        Registers an account
+
+        **Usage:**
+
+        ```python
+        >>> sv.session.register("idhere", "blankie", "i need some sleep", "blankies", "blankets")
+        # TODO return output
+        ```
+
+        **Parameters:**
+
+        - **terms_of_service_id**: Terms of Service ID from [`help.get_terms_of_service`](#help)
+        - **username**: Username of the account
+        - **password**: Password of the account
+        - **first_name**: First name of the account
+        - **last_name** *(optional)*: Last name of the account
+
+        **Returns:** The [`types.Peer`](/types/#peer) of the new account
+        """
+
         params = {
             "session_identification": create_session_id(self),
             "terms_of_service_id": terms_of_service_id,

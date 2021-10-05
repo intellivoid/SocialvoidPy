@@ -12,6 +12,21 @@ from .cloud import Cloud
 
 
 class SocialvoidClient:
+    """
+    Synchronous Socialvoid client
+
+    **Usage:**
+
+    ```python
+    >>> sv = socialvoidpy.SocialvoidClient('socialvoid.session')
+    ```
+
+    **Parameters:**
+
+    - **filename** *(optional)*: Path for session persistence
+    - **rpc_endpoint** *(optional)*: RPC endpoint url, set to the official instance by defaul
+    """
+
     def __init__(
         self,
         filename: typing.Optional[str] = None,
@@ -36,6 +51,9 @@ class SocialvoidClient:
         self.cloud = Cloud(self)
 
     def close(self):
+        """
+        Closes the HTTPX client, should be called after you're finished using the object
+        """
         self.httpx_client.close()
 
     def __del__(self):
@@ -48,6 +66,9 @@ class SocialvoidClient:
     def make_request(
         self, *requests: typing.Sequence[Request]
     ) -> typing.Union[typing.List[Response], Response]:
+        """
+        Sends request(s) off to RPC server, should not be used if a friendly method is available
+        """
         if not requests:
             raise ValueError("requests should not be empty")
         batch = len(requests) != 1

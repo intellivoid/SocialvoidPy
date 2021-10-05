@@ -6,13 +6,39 @@ from .base_class import BaseClass
 
 
 class FileType(Enum):
-    DOCUMENT = 'DOCUMENT'
-    PHOTO = 'PHOTO'
-    VIDEO = 'VIDEO'
-    AUDIO = 'AUDIO'
+    """
+    A file type
+
+    **Members:**
+
+    - **DOCUMENT**
+    - **PHOTO**
+    - **VIDEO**
+    - **AUDIO**
+    """
+
+    DOCUMENT = "DOCUMENT"
+    PHOTO = "PHOTO"
+    VIDEO = "VIDEO"
+    AUDIO = "AUDIO"
+
 
 @dataclass
 class Document(BaseClass):
+    """
+    A document
+
+    **Members:**
+
+    - **id**: Document ID
+    - **file_mime**: The file's mime/media type
+    - **file_name**: The file name
+    - **file_size**: The file size in bytes
+    - **file_type**: A [`FileType`](#filetype)
+    - **flags**: Flags set for the document
+    - **created**: When the document was created
+    """
+
     id: str
     file_mime: str
     file_name: str

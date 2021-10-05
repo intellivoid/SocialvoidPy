@@ -1,0 +1,23 @@
+site_name: SocialvoidPy
+repo_name: Intellivoid/SocialvoidPy
+repo_url: https://github.com/Intellivoid/SocialvoidPy
+edit_uri: ""
+theme:
+    name: material
+    font: false
+    palette:
+        scheme: slate
+        primary: deep purple
+        accent: deep purple
+nav:
+    - Home: index.md
+    - Types: types.md
+    - Synchronous Client: sync.md
+    - Custom Session Storage: custom_session_storage.md
+markdown_extensions:
+    - pymdownx.highlight
+    - pymdownx.superfences
+    - mkautodoc
+extra_css:
+    - css/custom.css
+    - css/autodoc.css

@@ -8,10 +8,18 @@ if typing.TYPE_CHECKING:
 
 
 class Account:
+    """
+    `account` methods
+    """
+
     def __init__(self, sv: "SocialvoidClient"):
         self._sv = sv
 
     def delete_profile_picture(self) -> bool:
+        """
+        Removes the profile picture of the currently logged in account
+        """
+
         return self._sv.make_request(
             Request(
                 "account.delete_profile_picture",
@@ -20,6 +28,14 @@ class Account:
         ).unwrap()
 
     def set_profile_picture(self, document: typing.Union[str, types.Document]) -> bool:
+        """
+        Sets the profile picture of the currently logged in account
+
+        **Parameters:**
+
+        - **document**: The photo of the profile picture you want set
+        """
+
         if isinstance(document, types.Document):
             document = document.id
         return self._sv.make_request(

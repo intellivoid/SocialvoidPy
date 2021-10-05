@@ -6,6 +6,18 @@ from .base_class import BaseClass
 
 @dataclass
 class Session(BaseClass):
+    """
+    A session
+
+    **Members:**
+
+    - **id**: The session's ID
+    - **flags**: Flags set on the session
+    - **authenticated**: If the session is authenticated
+    - **created**: When the session was created
+    - **expires**: When the session will expire
+    """
+
     id: str
     flags: typing.List[str]
     authenticated: bool

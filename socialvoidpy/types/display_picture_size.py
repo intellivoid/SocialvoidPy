@@ -5,6 +5,16 @@ from .base_class import BaseClass
 
 @dataclass
 class DisplayPictureSize(BaseClass):
+    """
+    A display/profile picture
+
+    **Members:**
+
+    - **width**: Width of the image
+    - **height**: Height of the image
+    - **document**: A [`Document`](#document)
+    """
+
     width: int
     height: int
     document: Document

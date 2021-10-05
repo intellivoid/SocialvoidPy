@@ -22,43 +22,95 @@ class _TextEntity(BaseClass):
 
 @dataclass
 class BoldTextEntity(_TextEntity):
+    """
+    A bold text entity
+
+    **Members:**
+
+    - **offset**: Offset into the text
+    - **length**: Length of the entity
+    - **value**: An optional value (e.g. a url for URLTextEntity)
+    """
+
     type: str = field(default="BOLD", repr=False)
 
 
 @dataclass
 class ItalicTextEntity(_TextEntity):
+    """
+    An italic text entity
+
+    See [`BoldTextEntity`](#boldtextentity) for members
+    """
+
     type: str = field(default="ITALIC", repr=False)
 
 
 @dataclass
 class CodeTextEntity(_TextEntity):
+    """
+    A code text entity
+
+    See [`BoldTextEntity`](#boldtextentity) for members
+    """
+
     type: str = field(default="CODE", repr=False)
 
 
 @dataclass
 class StrikeTextEntity(_TextEntity):
+    """
+    A strikethrough text entity
+
+    See [`BoldTextEntity`](#boldtextentity) for members
+    """
+
     type: str = field(default="STRIKE", repr=False)
 
 
 @dataclass
 class UnderlineTextEntity(_TextEntity):
+    """
+    An underline text entity
+
+    See [`BoldTextEntity`](#boldtextentity) for members
+    """
+
     type: str = field(default="UNDERLINE", repr=False)
 
 
 @dataclass
 class URLTextEntity(_TextEntity):
+    """
+    A URL text entity
+
+    See [`BoldTextEntity`](#boldtextentity) for members
+    """
+
     type: str = field(default="URL", repr=False)
     value_required: bool = field(default=True, init=False, repr=False)
 
 
 @dataclass
 class MentionTextEntity(_TextEntity):
+    """
+    A mention text entity
+
+    See [`BoldTextEntity`](#boldtextentity) for members
+    """
+
     type: str = field(default="MENTION", repr=False)
     value_required: bool = field(default=True, init=False, repr=False)
 
 
 @dataclass
 class HashtagTextEntity(_TextEntity):
+    """
+    A hashtag text entity
+
+    See [`BoldTextEntity`](#boldtextentity) for members
+    """
+
     type: str = field(default="HASHTAG", repr=False)
 
 
