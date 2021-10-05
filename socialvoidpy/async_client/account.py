@@ -8,10 +8,18 @@ if typing.TYPE_CHECKING:
 
 
 class Account:
+    """
+    `account` methods
+    """
+
     def __init__(self, sv: "AsyncSocialvoidClient"):
         self._sv = sv
 
     async def delete_profile_picture(self) -> bool:
+        """
+        Removes the profile picture of the currently logged in account
+        """
+
         return (
             await self._sv.make_request(
                 Request(
@@ -24,6 +32,14 @@ class Account:
     async def set_profile_picture(
         self, document: typing.Union[str, types.Document]
     ) -> bool:
+        """
+        Sets the profile picture of the currently logged in account
+
+        **Parameters:**
+
+        - **document**: The photo of the profile picture you want set
+        """
+
         if isinstance(document, types.Document):
             document = document.id
         return (

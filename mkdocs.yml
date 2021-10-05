@@ -13,6 +13,7 @@ nav:
     - Home: index.md
     - Types: types.md
     - Synchronous Client: sync.md
+    - Asynchronous Client: async.md
     - Custom Session Storage: custom_session_storage.md
 markdown_extensions:
     - pymdownx.highlight
