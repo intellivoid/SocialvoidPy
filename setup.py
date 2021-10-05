@@ -15,5 +15,5 @@ setup(
     python_requires=">=3.6",
     include_package_data=True,
     packages=find_packages(exclude=["examples"]),
-    install_requires=["httpx==0.19.*", "dataclasses==0.8"],
+    install_requires=["httpx==0.19.*", "dataclasses==0.8;python_version<'3.7'"],
 )
