@@ -1,8 +1,15 @@
 import typing
 import datetime
+from enum import Enum
 from dataclasses import dataclass
 from .base_class import BaseClass
 
+
+class FileType(Enum):
+    DOCUMENT = 'DOCUMENT'
+    PHOTO = 'PHOTO'
+    VIDEO = 'VIDEO'
+    AUDIO = 'AUDIO'
 
 @dataclass
 class Document(BaseClass):
@@ -10,7 +17,7 @@ class Document(BaseClass):
     file_mime: str
     file_name: str
     file_size: int
-    file_type: str
+    file_type: FileType
     flags: typing.List[str]
     created: datetime.datetime
 
@@ -21,7 +28,7 @@ class Document(BaseClass):
             resp["file_mime"],
             resp["file_name"],
             resp["file_size"],
-            resp["file_type"],
+            FileType(resp["file_type"]),
             resp["flags"],
             datetime.datetime.fromtimestamp(resp["created_timestamp"]),
         )
