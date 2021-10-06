@@ -22,5 +22,3 @@ class SessionDoesNotExist(GeneralError):
     """
     Session does not exist while the method called requires a session
     """
-
-    pass
