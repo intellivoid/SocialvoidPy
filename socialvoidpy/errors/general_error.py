@@ -2,6 +2,10 @@ import typing
 
 
 class GeneralError(Exception):
+    """
+    The base exception for errors in the server's response
+    """
+
     def __init__(
         self,
         code: typing.Optional[int],
@@ -15,4 +19,8 @@ class GeneralError(Exception):
 
 # Can this go somewhere else?
 class SessionDoesNotExist(GeneralError):
+    """
+    Session does not exist while the method called requires a session
+    """
+
     pass
