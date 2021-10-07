@@ -30,4 +30,4 @@ async def main():
         await sv.aclose()
 
 
-asyncio.run(main())
+asyncio.get_event_loop().run_until_complete(main())

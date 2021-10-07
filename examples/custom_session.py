@@ -14,9 +14,10 @@ try:
 
     if session_challenge is None:
         sv.session.create("Fridgevoid", "1.0.1", "Samsung Smart Fridge")
-        config["public_hash"] = sv.session.public_hash
-        config["private_hash"] = sv.session.private_hash
-        config["session_id"] = sv.session.session_id
+        config["socialvoid"] = dict()
+        config["socialvoid"]["public_hash"] = sv.session.public_hash
+        config["socialvoid"]["private_hash"] = sv.session.private_hash
+        config["socialvoid"]["session_id"] = sv.session.session_id
         with open("session.ini", "w+") as file:
             config.write(file)
         print(
@@ -24,9 +25,9 @@ try:
             sv.session.session_challenge,
         )
     else:
-        sv.session.public_hash = config["public_hash"]
-        sv.session.private_hash = config["private_hash"]
-        sv.session.session_id = config["session_id"]
+        sv.session.public_hash = config["socialvoid"]["public_hash"]
+        sv.session.private_hash = config["socialvoid"]["private_hash"]
+        sv.session.session_id = config["socialvoid"]["session_id"]
         sv.session.session_challenge = session_challenge
         sv.session.session_exists = True
 finally:
