@@ -1,14 +1,16 @@
 import typing
 import secrets
 import httpx
-from ..utils import parse_jsonrpc_response, serialize_request
 from ..request import Request
 from ..response import Response
+from ..utils import parse_jsonrpc_response, serialize_request, create_session_id
+from .. import types
 from .session import Session
 from .help import Help
 from .network import Network
 from .account import Account
 from .cloud import Cloud
+from .cdn import CDN
 
 
 class SocialvoidClient:
@@ -45,10 +47,12 @@ class SocialvoidClient:
             except FileNotFoundError:
                 self.session = Session(self)
         self._session_filename = filename
+        self._cached_server_info = None
         self.help = Help(self)
         self.network = Network(self)
         self.account = Account(self)
         self.cloud = Cloud(self)
+        self.cdn = CDN(self)
 
     def close(self):
         """
@@ -62,6 +66,11 @@ class SocialvoidClient:
     def _save_session(self):
         if self._session_filename is not None:
             self.session.save(self._session_filename)
+
+    def _get_cached_server_info(self) -> types.ServerInformation:
+        if not self._cached_server_info:
+            self._cached_server_info = self.help.get_server_information()
+        return self._cached_server_info
 
     def make_request(
         self, *requests: typing.Sequence[Request]

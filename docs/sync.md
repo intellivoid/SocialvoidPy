@@ -35,3 +35,9 @@
 ::: socialvoidpy.sync_client.Cloud
     :docstring:
     :members: get_document
+
+### `CDN`
+
+::: socialvoidpy.sync_client.CDN
+    :docstring:
+    :members: stream upload
