@@ -19,6 +19,7 @@
 
 ::: socialvoidpy.types.HelpDocument
     :docstring:
+    :members: get_html_text
 
 ## `Peer`
 
