@@ -98,7 +98,8 @@ class _EntityHTMLParser(HTMLParser):
             try:
                 url = next(i[1] for i in attrs if i[0] == "href")
             except StopIteration:
-                return
+                # handle_endtag ignores this building entity because url is None
+                url = None
             self._building_entities["URL"].append([URLTextEntity, None, 0, url])
 
     def handle_data(self, data: str):
@@ -116,6 +117,8 @@ class _EntityHTMLParser(HTMLParser):
             self._entities.append(entity[0](entity[1], entity[2], entity[3]))
         elif tag == "a":
             entity = self._building_entities["URL"].pop()
+            if not entity[3]:
+                return
             parsed = urlsplit(entity[3])
             if (
                 parsed.scheme == "sv"
