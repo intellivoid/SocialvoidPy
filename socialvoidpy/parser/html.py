@@ -34,7 +34,7 @@ def _unparse(
         elif i.type == "URL":
             ntext += f'<a href="{html.escape(i.value)}">{atext}</a>'
         elif i.type == "MENTION":
-            ntext += f'<a href="sv://peer/{quote(i.value)}">{atext}</a>'
+            ntext += f'<a href="sv://peer/{quote(i.value, safe="")}">{atext}</a>'
         elif i.type == "HASHTAG":
             ntext += atext
         else:
@@ -127,7 +127,7 @@ class _EntityHTMLParser(HTMLParser):
                 and parsed.path[0] == "/"
             ):
                 self._entities.append(
-                    MentionTextEntity(entity[1], entity[2], parsed.path[1:])
+                    MentionTextEntity(entity[1], entity[2], unquote(parsed.path[1:]))
                 )
             else:
                 self._entities.append(URLTextEntity(entity[1], entity[2], entity[3]))
