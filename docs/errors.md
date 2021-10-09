@@ -2,250 +2,250 @@
 
 ## `GeneralError`
 
-::: socialvoidpy.GeneralError
+::: socialvoidpy.errors.GeneralError
     :docstring:
 
 ## `SessionDoesNotExist`
 
-::: socialvoidpy.SessionDoesNotExist
+::: socialvoidpy.errors.SessionDoesNotExist
     :docstring:
 
 ## `JSONRPCError`
 
-::: socialvoidpy.JSONRPCError
+::: socialvoidpy.errors.JSONRPCError
     :docstring:
 
 ### `ParseError`
 
-::: socialvoidpy.ParseError
+::: socialvoidpy.errors.ParseError
     :docstring:
 
 ### `InvalidRequest`
 
-::: socialvoidpy.InvalidRequest
+::: socialvoidpy.errors.InvalidRequest
     :docstring:
 
 ### `MethodNotFound`
 
-::: socialvoidpy.MethodNotFound
+::: socialvoidpy.errors.MethodNotFound
     :docstring:
 
 ### `InvalidParams`
 
-::: socialvoidpy.InvalidParams
+::: socialvoidpy.errors.InvalidParams
     :docstring:
 
 ### `InternalError`
 
-::: socialvoidpy.InternalError
+::: socialvoidpy.errors.InternalError
     :docstring:
 
 ## `AuthenticationError`
 
-::: socialvoidpy.AuthenticationError
+::: socialvoidpy.errors.AuthenticationError
     :docstring:
 
 ### `IncorrectLoginCredentials`
 
-::: socialvoidpy.IncorrectLoginCredentials
+::: socialvoidpy.errors.IncorrectLoginCredentials
     :docstring:
 
 ### `IncorrectTwoFactorAuthenticationCode`
 
-::: socialvoidpy.IncorrectTwoFactorAuthenticationCode
+::: socialvoidpy.errors.IncorrectTwoFactorAuthenticationCode
     :docstring:
 
 ### `AuthenticationNotApplicable`
 
-::: socialvoidpy.AuthenticationNotApplicable
+::: socialvoidpy.errors.AuthenticationNotApplicable
     :docstring:
 
 ### `SessionNotFound`
 
-::: socialvoidpy.SessionNotFound
+::: socialvoidpy.errors.SessionNotFound
     :docstring:
 
 ### `NotAuthenticated`
 
-::: socialvoidpy.NotAuthenticated
+::: socialvoidpy.errors.NotAuthenticated
     :docstring:
 
 ### `PrivateAccessTokenRequired`
 
-::: socialvoidpy.PrivateAccessTokenRequired
+::: socialvoidpy.errors.PrivateAccessTokenRequired
     :docstring:
 
 ### `AuthenticationFailure`
 
-::: socialvoidpy.AuthenticationFailure
+::: socialvoidpy.errors.AuthenticationFailure
     :docstring:
 
 ### `BadSessionChallengeAnswer`
 
-::: socialvoidpy.BadSessionChallengeAnswer
+::: socialvoidpy.errors.BadSessionChallengeAnswer
     :docstring:
 
 ### `TwoFactorAuthenticationRequired`
 
-::: socialvoidpy.TwoFactorAuthenticationRequired
+::: socialvoidpy.errors.TwoFactorAuthenticationRequired
     :docstring:
 
 ### `AlreadyAuthenticated`
 
-::: socialvoidpy.AlreadyAuthenticated
+::: socialvoidpy.errors.AlreadyAuthenticated
     :docstring:
 
 ### `SessionExpired`
 
-::: socialvoidpy.SessionExpired
+::: socialvoidpy.errors.SessionExpired
     :docstring:
 
 ## `NetworkError`
 
-::: socialvoidpy.NetworkError
+::: socialvoidpy.errors.NetworkError
     :docstring:
 
 ### `PeerNotFound`
 
-::: socialvoidpy.PeerNotFound
+::: socialvoidpy.errors.PeerNotFound
     :docstring:
 
 ### `PostNotFound`
 
-::: socialvoidpy.PostNotFound
+::: socialvoidpy.errors.PostNotFound
     :docstring:
 
 ### `PostDeleted`
 
-::: socialvoidpy.PostDeleted
+::: socialvoidpy.errors.PostDeleted
     :docstring:
 
 ### `AlreadyReposted`
 
-::: socialvoidpy.AlreadyReposted
+::: socialvoidpy.errors.AlreadyReposted
     :docstring:
 
 ### `FileUploadError`
 
-::: socialvoidpy.FileUploadError
+::: socialvoidpy.errors.FileUploadError
     :docstring:
 
 ### `DocumentNotFound`
 
-::: socialvoidpy.DocumentNotFound
+::: socialvoidpy.errors.DocumentNotFound
     :docstring:
 
 ### `AccessDenied`
 
-::: socialvoidpy.AccessDenied
+::: socialvoidpy.errors.AccessDenied
     :docstring:
 
 ## `ServerError`
 
-::: socialvoidpy.ServerError
+::: socialvoidpy.errors.ServerError
     :docstring:
 
 ### `InternalServerError`
 
-::: socialvoidpy.InternalServerError
+::: socialvoidpy.errors.InternalServerError
     :docstring:
 
 ### `DocumentUpload`
 
-::: socialvoidpy.DocumentUpload
+::: socialvoidpy.errors.DocumentUpload
     :docstring:
 
 ## `ValidationError`
 
-::: socialvoidpy.ValidationError
+::: socialvoidpy.errors.ValidationError
     :docstring:
 
 ### `InvalidUsername`
 
-::: socialvoidpy.InvalidUsername
+::: socialvoidpy.errors.InvalidUsername
     :docstring:
 
 ### `InvalidPassword`
 
-::: socialvoidpy.InvalidPassword
+::: socialvoidpy.errors.InvalidPassword
     :docstring:
 
 ### `InvalidFirstName`
 
-::: socialvoidpy.InvalidFirstName
+::: socialvoidpy.errors.InvalidFirstName
     :docstring:
 
 ### `InvalidLastName`
 
-::: socialvoidpy.InvalidLastName
+::: socialvoidpy.errors.InvalidLastName
     :docstring:
 
 ### `InvalidBiography`
 
-::: socialvoidpy.InvalidBiography
+::: socialvoidpy.errors.InvalidBiography
     :docstring:
 
 ### `UsernameAlreadyExists`
 
-::: socialvoidpy.UsernameAlreadyExists
+::: socialvoidpy.errors.UsernameAlreadyExists
     :docstring:
 
 ### `InvalidPeerInput`
 
-::: socialvoidpy.InvalidPeerInput
+::: socialvoidpy.errors.InvalidPeerInput
     :docstring:
 
 ### `InvalidPostText`
 
-::: socialvoidpy.InvalidPostText
+::: socialvoidpy.errors.InvalidPostText
     :docstring:
 
 ### `InvalidClientPublicHash`
 
-::: socialvoidpy.InvalidClientPublicHash
+::: socialvoidpy.errors.InvalidClientPublicHash
     :docstring:
 
 ### `InvalidClientPrivateHash`
 
-::: socialvoidpy.InvalidClientPrivateHash
+::: socialvoidpy.errors.InvalidClientPrivateHash
     :docstring:
 
 ### `InvalidPlatform`
 
-::: socialvoidpy.InvalidPlatform
+::: socialvoidpy.errors.InvalidPlatform
     :docstring:
 
 ### `InvalidVersion`
 
-::: socialvoidpy.InvalidVersion
+::: socialvoidpy.errors.InvalidVersion
     :docstring:
 
 ### `InvalidClientName`
 
-::: socialvoidpy.InvalidClientName
+::: socialvoidpy.errors.InvalidClientName
     :docstring:
 
 ### `InvalidSessionIdentification`
 
-::: socialvoidpy.InvalidSessionIdentification
+::: socialvoidpy.errors.InvalidSessionIdentification
     :docstring:
 
 ### `InvalidFileForProfilePicture`
 
-::: socialvoidpy.InvalidFileForProfilePicture
+::: socialvoidpy.errors.InvalidFileForProfilePicture
     :docstring:
 
 ### `FileTooLarge`
 
-::: socialvoidpy.FileTooLarge
+::: socialvoidpy.errors.FileTooLarge
     :docstring:
 
 ### `InvalidHelpDocumentId`
 
-::: socialvoidpy.InvalidHelpDocumentId
+::: socialvoidpy.errors.InvalidHelpDocumentId
     :docstring:
 
 ### `AgreementRequired`
 
-::: socialvoidpy.AgreementRequired
+::: socialvoidpy.errors.AgreementRequired
     :docstring:
