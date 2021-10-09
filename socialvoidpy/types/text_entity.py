@@ -32,6 +32,7 @@ class BoldTextEntity(_TextEntity):
     - **value**: An optional value (e.g. a url for URLTextEntity)
     """
 
+    value: typing.Optional[str] = None
     type: str = field(default="BOLD", repr=False)
 
 
@@ -43,6 +44,7 @@ class ItalicTextEntity(_TextEntity):
     See [`BoldTextEntity`](#boldtextentity) for members
     """
 
+    value: typing.Optional[str] = None
     type: str = field(default="ITALIC", repr=False)
 
 
@@ -54,6 +56,7 @@ class CodeTextEntity(_TextEntity):
     See [`BoldTextEntity`](#boldtextentity) for members
     """
 
+    value: typing.Optional[str] = None
     type: str = field(default="CODE", repr=False)
 
 
@@ -65,6 +68,7 @@ class StrikeTextEntity(_TextEntity):
     See [`BoldTextEntity`](#boldtextentity) for members
     """
 
+    value: typing.Optional[str] = None
     type: str = field(default="STRIKE", repr=False)
 
 
@@ -76,6 +80,7 @@ class UnderlineTextEntity(_TextEntity):
     See [`BoldTextEntity`](#boldtextentity) for members
     """
 
+    value: typing.Optional[str] = None
     type: str = field(default="UNDERLINE", repr=False)
 
 
@@ -112,6 +117,7 @@ class HashtagTextEntity(_TextEntity):
     """
 
     type: str = field(default="HASHTAG", repr=False)
+    value_required: bool = field(default=True, init=False, repr=False)
 
 
 TEXT_ENTITY_MAP = {
