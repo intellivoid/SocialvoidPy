@@ -1,3 +1,4 @@
+import typing
 from dataclasses import dataclass
 from .base_class import BaseClass
 
@@ -15,6 +16,12 @@ class ServerInformation(BaseClass):
     - **upload_max_file_size**: Maximum upload file size in bytes
     - **unauthorized_session_ttl**: How long an unauthorized session can be unused before it expires
     - **authorized_session_ttl**: How long an authorized session can be unused before it expires
+    - **retrieve_likes_max_limit**: The maximum amount of likes that can be retrieved at once with `timeline.get_likes` via the `limit` parameter (Set to None if protocol version is under 1.0.0.1)
+    - **retrieve_reposts_max_limit**: The maximum amount of reposts that can be retrieved at once with `timeline.get_reposted_peers` via the `limit` parameter (Set to None if protocol version is under 1.0.0.1)
+    - **retrieve_replies_max_limit**: The maximum amount of replies that can be retrieved at once with `timeline.get_replies` via the `limit` parameter (Set to None if protocol version is under 1.0.0.1)
+    - **retrieve_quotes_max_limit**: The maximum amount of quotes that can be retrieved at once with `timeline.get_quotes` via the `limit` parameter (Set to None if protocol version is under 1.0.0.1)
+    - **retrieve_followers_max_limit**: The maximum amount of followers that can be retrieved at once with `network.get_followers` via the `limit` parameter (Set to None if protocol version is under 1.0.0.1)
+    - **retrieve_following_max_limit**: The maximum amount of following peers that can be retrieved at once with `network.get_following` via the `limit` parameter (Set to None if protocol version is under 1.0.0.1)
     """
 
     network_name: str
@@ -23,6 +30,12 @@ class ServerInformation(BaseClass):
     upload_max_file_size: int
     unauthorized_session_ttl: int
     authorized_session_ttl: int
+    retrieve_likes_max_limit: typing.Optional[int]
+    retrieve_reposts_max_limit: typing.Optional[int]
+    retrieve_replies_max_limit: typing.Optional[int]
+    retrieve_quotes_max_limit: typing.Optional[int]
+    retrieve_followers_max_limit: typing.Optional[int]
+    retrieve_following_max_limit: typing.Optional[int]
 
     @classmethod
     def from_json(cls, resp: dict):
@@ -33,4 +46,10 @@ class ServerInformation(BaseClass):
             resp["upload_max_file_size"],
             resp["unauthorized_session_ttl"],
             resp["authorized_session_ttl"],
+            resp.get("retrieve_likes_max_limit"),
+            resp.get("retrieve_reposts_max_limit"),
+            resp.get("retrieve_replies_max_limit"),
+            resp.get("retrieve_quotes_max_limit"),
+            resp.get("retrieve_followers_max_limit"),
+            resp.get("retrieve_following_max_limit"),
         )
