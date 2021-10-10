@@ -180,7 +180,7 @@ class Session:
 
         ```python
         >>> await sv.session.register("idhere", "blankie", "i need some sleep", "blankies", "blankets")
-        # TODO return output
+        Peer(id='f65e2f25e1bfbf876ba865a41f71d93833b37c5c3c75e827bc2bb1da45bd7962', type=<PeerType.USER: 'USER'>, name='blankies blankets', username='blankie', display_picture_sizes=[], flags=[])
         ```
 
         **Parameters:**
