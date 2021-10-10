@@ -83,3 +83,22 @@ class AsyncSocialvoidClient:
         body = serialize_request(requests)
         resp = await self.httpx_client.post(self.rpc_endpoint, json=body)
         return parse_jsonrpc_response(resp.text, batch)
+
+    async def get_protocol_version(self) -> typing.Tuple[int]:
+        """
+        Returns the protocol version the server supports
+
+        **Usage:**
+
+        ```python
+        >>> await sv.get_protocol_version()
+        (1, 1)
+        >>> await sv.get_protocol_version() >= (1, 1)
+        True
+        ```
+        """
+
+        return tuple(
+            int(i)
+            for i in (await self._get_cached_server_info()).protocol_version.split(".")
+        )

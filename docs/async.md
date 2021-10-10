@@ -4,7 +4,7 @@
 
 ::: socialvoidpy.AsyncSocialvoidClient
     :docstring:
-    :members: aclose
+    :members: aclose get_protocol_version
 
 ### `Session`
 
