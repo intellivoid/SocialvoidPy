@@ -36,7 +36,7 @@ class Document(BaseClass):
     - **file_size**: The file size in bytes
     - **file_type**: A [`FileType`](#filetype)
     - **flags**: Flags set for the document
-    - **created**: When the document was created (removed in 1.0.0.1)
+    - **created**: When the document was created (set to None in standard version 1.0.0.1 since it was removed)
     """
 
     id: str
