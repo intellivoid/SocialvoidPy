@@ -32,7 +32,7 @@ class Peer(BaseClass):
     - **type**: The [`PeerType`](#peertype)
     - **name**: The peer's name
     - **username**: The peer's username
-    - **display_picture_sizes**: The peer's display/profile pictures (removed in 1.0.0.1, see `network.get_profile`)
+    - **display_picture_sizes**: The peer's display/profile pictures (an empty list in standard version 1.0.0.1 since it was removed, see `network.get_profile`)
     - **flags**: Flags set for the peer
     """
 
