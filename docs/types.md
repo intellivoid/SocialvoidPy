@@ -31,6 +31,11 @@
 ::: socialvoidpy.types.PeerType
     :docstring:
 
+## `Profile`
+
+::: socialvoidpy.types.Profile
+    :docstring:
+
 ## `ServerInformation`
 
 ::: socialvoidpy.types.ServerInformation
