@@ -92,9 +92,9 @@ class AsyncSocialvoidClient:
 
         ```python
         >>> await sv.get_protocol_version()
-        (1, 1)
+        (1, 0)
         >>> await sv.get_protocol_version() >= (1, 1)
-        True
+        False
         ```
         """
 

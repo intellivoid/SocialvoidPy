@@ -95,9 +95,9 @@ class SocialvoidClient:
 
         ```python
         >>> sv.get_protocol_version()
-        (1, 1)
+        (1, 0)
         >>> sv.get_protocol_version() >= (1, 1)
-        True
+        False
         ```
         """
 
