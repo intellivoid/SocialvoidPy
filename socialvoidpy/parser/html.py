@@ -114,10 +114,11 @@ class _EntityHTMLParser(HTMLParser):
     def handle_endtag(self, tag: str):
         if tag in _ENDTAG_MAP:
             entity = self._building_entities[_ENDTAG_MAP[tag]].pop()
-            self._entities.append(entity[0](entity[1], entity[2], entity[3]))
+            if entity[1] is not None:
+                self._entities.append(entity[0](entity[1], entity[2], entity[3]))
         elif tag == "a":
             entity = self._building_entities["URL"].pop()
-            if not entity[3]:
+            if entity[1] is None or not entity[3]:
                 return
             parsed = urlsplit(entity[3])
             if (
