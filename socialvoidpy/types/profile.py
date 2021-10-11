@@ -7,7 +7,7 @@ from .base_class import BaseClass
 @dataclass
 class Profile(BaseClass):
     """
-    A profile (introduced in standard version 1.0.0.1)
+    A profile
 
     **Members:**
 
