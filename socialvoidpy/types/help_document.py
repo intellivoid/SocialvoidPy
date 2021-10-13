@@ -31,6 +31,8 @@ class HelpDocument(BaseClass):
     def get_html_text(self) -> str:
         """
         Parses the raw text and entities into an HTML string
+
+        **Returns:** `str`
         """
 
         return unparse(self.raw_text, self.entities, ParseMode.HTML)
