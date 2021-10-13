@@ -1,6 +1,6 @@
 import getpass
-from socialvoidpy import (
-    SocialvoidClient,
+from socialvoidpy import SocialvoidClient
+from socialvoidpy.errors import (
     SessionExpired,
     TwoFactorAuthenticationRequired,
 )

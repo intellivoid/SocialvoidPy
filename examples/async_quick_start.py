@@ -1,7 +1,7 @@
 import asyncio
 import getpass
-from socialvoidpy import (
-    AsyncSocialvoidClient,
+from socialvoidpy import AsyncSocialvoidClient
+from socialvoidpy.errors import (
     SessionExpired,
     TwoFactorAuthenticationRequired,
 )
