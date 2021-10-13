@@ -1,2 +1,2 @@
-httpx==0.19.*
+httpx==0.20.*
 dataclasses==0.8;python_version<'3.7'
