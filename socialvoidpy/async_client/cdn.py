@@ -22,7 +22,7 @@ class CDN:
 
         **Parameters:**
 
-        - **document**: Document to stream the contents of
+        - **document** (`str`, [`types.Document`](/types/#document)): Document to stream the contents of
 
         **Usage:**
 
@@ -70,7 +70,7 @@ class CDN:
 
         **Parameters:**
 
-        - **file**: File path or object to upload
+        - **file** (`str`, `pathlib.Path`, `typing.BinaryIO`): File path or object to upload
 
         **Usage:**
 

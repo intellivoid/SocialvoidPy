@@ -11,11 +11,11 @@ class Session(BaseClass):
 
     **Members:**
 
-    - **id**: The session's ID
-    - **flags**: Flags set on the session
-    - **authenticated**: If the session is authenticated
-    - **created**: When the session was created
-    - **expires**: When the session will expire
+    - **id** (`str`): The session's ID
+    - **flags** (`str[]`): Flags set on the session
+    - **authenticated** (`bool`): If the session is authenticated
+    - **created** (`datetime.datetime`): When the session was created
+    - **expires** (`datetime.datetime`): When the session will expire
     """
 
     id: str

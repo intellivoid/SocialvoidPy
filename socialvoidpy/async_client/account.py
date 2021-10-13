@@ -39,7 +39,7 @@ class Account:
 
         **Parameters:**
 
-        - **document**: The photo of the profile picture you want set
+        - **document** (`str`, [`types.Document`](/types/#document)): The photo of the profile picture you want set
 
         **Authentication Required:** Yes
         """

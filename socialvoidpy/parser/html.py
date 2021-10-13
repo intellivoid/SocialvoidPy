@@ -49,8 +49,8 @@ def unparse(text: str, entities: typing.List[_TextEntity]) -> str:
 
     **Parameters:**
 
-    - **text**: Raw text
-    - **entities**: Entities (will be sorted, pass a copy if you don't want order to be changed)
+    - **text** (`str`): Raw text
+    - **entities** (`TextEntity[]`): Entities (will be sorted, pass a copy if you don't want order to be changed)
     """
 
     entities.sort(key=lambda i: (i.offset, -i.length))
@@ -140,7 +140,7 @@ def parse(text: str) -> typing.Tuple[str, typing.List[_TextEntity]]:
 
     **Parameters:**
 
-    - **text**: HTML encoded string to parse
+    - **text** (`str`): HTML encoded string to parse
     """
 
     parser = _EntityHTMLParser()

@@ -27,9 +27,9 @@ def unparse(
 
     **Parameters:**
 
-    - **text**: Text to unparse
-    - **entities**: Entities to unparse
-    - **parse_mode**: A `ParseMode`
+    - **text** (`str`): Text to unparse
+    - **entities** (`TextEntity[]`): Entities to unparse
+    - **parse_mode** (`ParseMode`): The parse mode
     """
 
     return _PARSE_FUNC_MAP[parse_mode][1](text, entities)
@@ -43,8 +43,8 @@ def parse(
 
     **Parameters:**
 
-    - **text**: Text to parse
-    - **parse_mode**: A `ParseMode`
+    - **text** (`str`): Text to unparse
+    - **parse_mode** (`ParseMode`): The parse mode
     """
 
     return _PARSE_FUNC_MAP[parse_mode][0](text)

@@ -34,7 +34,7 @@ class Session:
         self.session_exists = session_exists
 
     @classmethod
-    def load(cls, sv: "SocialvoidClient", filename: str):
+    def load(cls, sv: "SocialvoidClient", filename: str) -> "Session":
         with open(filename) as file:
             data = json.load(file)
         return cls(
@@ -76,9 +76,9 @@ class Session:
 
         **Parameters:**
 
-        - **name** *(optional)*: Name of client
-        - **version** *(optional)*: Version of client
-        - **platform** *(optional)*: Platform of client
+        - **name** (`str`, optional): Name of client
+        - **version** (`str`, optional): Version of client
+        - **platform** (`str`, `None`, optional): Platform of client
 
         **Session Required:** No (it literally makes one)
         """
@@ -150,9 +150,9 @@ class Session:
 
         **Parameters:**
 
-        - **username**: Username of the account to login to
-        - **password**: Password of the account to login to
-        - **otp** *(optional)*: Optional One-Time Password of the account to login to
+        - **username** (`str`): Username of the account to login to
+        - **password** (`str`): Password of the account to login to
+        - **otp** (`str`, `None`, optional): Optional One-Time Password of the account to login to
 
         **Session Required:** Yes
         """
@@ -188,11 +188,11 @@ class Session:
 
         **Parameters:**
 
-        - **terms_of_service_id**: Terms of Service ID from [`help.get_terms_of_service`](#help)
-        - **username**: Username of the account
-        - **password**: Password of the account
-        - **first_name**: First name of the account
-        - **last_name** *(optional)*: Last name of the account
+        - **terms_of_service_id** (`str`): Terms of Service ID from [`help.get_terms_of_service`](#help)
+        - **username** (`str`): Username of the account
+        - **password** (`str`): Password of the account
+        - **first_name** (`str`): First name of the account
+        - **last_name** (`str`, `None`, optional): Last name of the account
 
         **Returns:** The [`types.Peer`](/types/#peer) of the new account
 

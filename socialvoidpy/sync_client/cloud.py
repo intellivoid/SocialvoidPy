@@ -23,7 +23,7 @@ class Cloud:
 
         **Parameters:**
 
-        - **document**: A document ID
+        - **document** (`str`, [`types.Document`](/types/#document)): A document ID
 
         **Returns:** [`types.Document`](/types/#document)
 

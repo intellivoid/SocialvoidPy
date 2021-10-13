@@ -25,8 +25,8 @@ class AsyncSocialvoidClient:
 
     **Parameters:**
 
-    - **filename** *(optional)*: Path for session persistence
-    - **rpc_endpoint** *(optional)*: RPC endpoint url, set to the official instance by defaul
+    - **filename** (`str`, `None`, optional): Path for session persistence
+    - **rpc_endpoint** (`str`, optional): RPC endpoint url, set to the official instance by defaul
     """
 
     def __init__(

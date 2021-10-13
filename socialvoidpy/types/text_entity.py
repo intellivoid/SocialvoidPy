@@ -27,9 +27,9 @@ class BoldTextEntity(_TextEntity):
 
     **Members:**
 
-    - **offset**: Offset into the text
-    - **length**: Length of the entity
-    - **value**: An optional value (e.g. a url for URLTextEntity)
+    - **offset** (`int`): Offset into the text
+    - **length** (`int`): Length of the entity
+    - **value** (`str`, `None`): An optional value (e.g. a url for URLTextEntity)
     """
 
     value: typing.Optional[str] = None

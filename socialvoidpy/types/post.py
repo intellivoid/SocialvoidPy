@@ -38,21 +38,21 @@ class Post(BaseClass):
 
     **Members:**
 
-    - **id**: ID of the post
-    - **type**: The [`PostType`](#posttype)
-    - **peer**: The [`Peer`](#peer) that sent the post (can be None)
-    - **source**: The source of the post determined serverside (can be None)
-    - **raw_text**: Raw text of the post (can be None)
-    - **entities**: Text entities of the raw text
-    - **mentioned_peers**: Mentioned peers in the post
-    - **reply_to_post**: What this post is replying to (can be None)
-    - **quoted_post**: What this post was quoting (can be None)
-    - **reposted_post**: The original post (can be None)
-    - **like_count**: Amount of times this post has been liked (can be None)
-    - **repost_count**: Amount of times this post has been reposted (can be None)
-    - **quote_count**: Amount of times this post has been quoted (can be None)
-    - **posted_timestamp**: When this post was posted
-    - **flags**: Flags set on this post
+    - **id** (`str`): ID of the post
+    - **type** ([`PostType`](#posttype)): The post type
+    - **peer** ([`Peer`](#peer), `None`): The peer that sent the post
+    - **source** (`str`, `None`): The source of the post determined serverside
+    - **raw_text** (`str`, `None`): Raw text of the post
+    - **entities** (`TextEntity[]`): Text entities of the raw text
+    - **mentioned_peers** ([`Peer[]`](#peer)): Mentioned peers in the post
+    - **reply_to_post** (`Post`, `None`): What this post is replying to
+    - **quoted_post** (`Post`, `None`): What this post was quoting
+    - **reposted_post** (`Post`, `None`): The original post
+    - **like_count** (`int`, `None`): Amount of times this post has been liked
+    - **repost_count** (`int`, `None`): Amount of times this post has been reposted
+    - **quote_count** (`int`, `None`): Amount of times this post has been quoted
+    - **posted_timestamp** (`datetime.datetime`): When this post was posted
+    - **flags** (`str[]`): Flags set on this post
     """
 
     id: str

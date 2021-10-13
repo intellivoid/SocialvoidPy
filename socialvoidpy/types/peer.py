@@ -27,11 +27,11 @@ class Peer(BaseClass):
 
     **Members:**
 
-    - **id**: The peer's id
-    - **type**: The [`PeerType`](#peertype)
-    - **name**: The peer's name
-    - **username**: The peer's username
-    - **flags**: Flags set for the peer
+    - **id** (`str`): The peer's id
+    - **type** ([`PeerType`](#peertype)): The peer's type
+    - **name** (`str`): The peer's name
+    - **username** (`str`): The peer's username
+    - **flags** (`str[]`): Flags set for the peer
     """
 
     id: str

@@ -29,12 +29,12 @@ class Document(BaseClass):
 
     **Members:**
 
-    - **id**: Document ID
-    - **file_mime**: The file's mime/media type
-    - **file_name**: The file name
-    - **file_size**: The file size in bytes
-    - **file_type**: A [`FileType`](#filetype)
-    - **flags**: Flags set for the document
+    - **id** (`str`): Document ID
+    - **file_mime** (`str`): The file's mime/media type
+    - **file_name** (`str`): The file name
+    - **file_size** (`int`): The file size in bytes
+    - **file_type** ([`FileType`](#filetype)): The file type
+    - **flags** (`str[]`): Flags set for the document
     """
 
     id: str

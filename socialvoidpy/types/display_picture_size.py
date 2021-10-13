@@ -10,9 +10,9 @@ class DisplayPictureSize(BaseClass):
 
     **Members:**
 
-    - **width**: Width of the image
-    - **height**: Height of the image
-    - **document**: A [`Document`](#document)
+    - **width** (`int`): Width of the image
+    - **height** (`int`): Height of the image
+    - **document** ([`types.Document`](#document)): The document
     """
 
     width: int

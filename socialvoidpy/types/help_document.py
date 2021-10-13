@@ -13,9 +13,9 @@ class HelpDocument(BaseClass):
 
     **Members:**
 
-    - **id**: ID of the help document
-    - **raw_text**: Raw text of the help document
-    - **entities**: Text entities of the raw text
+    - **id** (`str`): ID of the help document
+    - **raw_text** (`str`): Raw text of the help document
+    - **entities** (`TextEntity[]`): Text entities of the raw text
     """
 
     id: str

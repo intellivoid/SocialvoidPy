@@ -11,14 +11,14 @@ class Profile(BaseClass):
 
     **Members:**
 
-    - **first_name**: The first name of the entity
-    - **last_name**: The optional last name of the entity (can be None)
-    - **name**: The full display name of the entity
-    - **biography**: The optional biography or description of the entity (can be None)
-    - **url**: The optional URL of the entity (can be None)
-    - **followers_count**: The amount of followers this entity has
-    - **following_count**: The amount of peers this entity is following
-    - **display_picture_sizes**: An array of display pictures of this entity
+    - **first_name** (`str`): The first name of the entity
+    - **last_name** (`str`, `None`): The optional last name of the entity
+    - **name** (`str`): The full display name of the entity
+    - **biography** (`str`): The optional biography or description of the entity
+    - **url** (`str`, `None`): The optional URL of the entity
+    - **followers_count** (`int`): The amount of followers this entity has
+    - **following_count** (`int`): The amount of peers this entity is following
+    - **display_picture_sizes** ([`DisplayPictureSize[]`](#displaypicturesize)): An array of display pictures of this entity
     """
 
     first_name: str
