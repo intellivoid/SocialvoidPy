@@ -99,6 +99,8 @@ class SocialvoidClient:
         >>> sv.get_protocol_version() >= (1, 1)
         False
         ```
+
+        **Session Required:** No
         """
 
         return tuple(

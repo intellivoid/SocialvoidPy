@@ -19,6 +19,8 @@ class Help:
         Retrieves the community guidelines
 
         **Returns:** [`types.HelpDocument`](/types/#helpdocument)
+
+        **Session Required:** No
         """
 
         resp = (
@@ -31,6 +33,8 @@ class Help:
         Retrieves the privacy policy
 
         **Returns:** [`types.HelpDocument`](/types/#helpdocument)
+
+        **Session Required:** No
         """
 
         resp = (
@@ -43,6 +47,8 @@ class Help:
         Retrieves server information
 
         **Returns:** [`types.ServerInformation`](/types/#serverinformation)
+
+        **Session Required:** No
         """
 
         resp = (
@@ -55,6 +61,8 @@ class Help:
         Retrieves the terms of service
 
         **Returns:** [`types.HelpDocument`](/types/#helpdocument)
+
+        **Session Required:** No
         """
 
         resp = (

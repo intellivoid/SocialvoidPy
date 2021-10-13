@@ -19,6 +19,8 @@ class Help:
         Retrieves the community guidelines
 
         **Returns:** [`types.HelpDocument`](/types/#helpdocument)
+
+        **Session Required:** No
         """
 
         resp = self._sv.make_request(Request("help.get_community_guidelines")).unwrap()
@@ -29,6 +31,8 @@ class Help:
         Retrieves the privacy policy
 
         **Returns:** [`types.HelpDocument`](/types/#helpdocument)
+
+        **Session Required:** No
         """
 
         resp = self._sv.make_request(Request("help.get_privacy_policy")).unwrap()
@@ -39,6 +43,8 @@ class Help:
         Retrieves server information
 
         **Returns:** [`types.ServerInformation`](/types/#serverinformation)
+
+        **Session Required:** No
         """
 
         resp = self._sv.make_request(Request("help.get_server_information")).unwrap()
@@ -49,6 +55,8 @@ class Help:
         Retrieves the terms of service
 
         **Returns:** [`types.HelpDocument`](/types/#helpdocument)
+
+        **Session Required:** No
         """
 
         resp = self._sv.make_request(Request("help.get_terms_of_service")).unwrap()

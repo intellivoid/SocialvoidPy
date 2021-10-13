@@ -25,6 +25,8 @@ class CDN:
         - **document**: Document to stream the contents of
 
         **Yields:** `bytes`
+
+        **Authentication Required:** Yes (for now?)
         """
 
         if isinstance(document, types.Document):
@@ -62,6 +64,8 @@ class CDN:
         - **file**: File path or object to upload
 
         **Returns:** [`types.Document`](/types/#document)
+
+        **Authentication Required:** Yes (for now?)
         """
 
         params = {

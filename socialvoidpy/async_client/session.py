@@ -79,6 +79,8 @@ class Session:
         - **name** *(optional)*: Name of client
         - **version** *(optional)*: Version of client
         - **platform** *(optional)*: Platform of client
+
+        **Session Required:** No (it literally makes one)
         """
 
         if platform is None:
@@ -109,6 +111,8 @@ class Session:
         Gets information about the current session
 
         **Returns:** [`types.Session`](/types/#Session)
+
+        **Session Required:** Yes
         """
 
         return types.Session.from_json(
@@ -125,6 +129,8 @@ class Session:
     async def logout(self) -> None:
         """
         Logs out of the account associated to the session, or does nothing if not logged in
+
+        **Session Required:** Yes
         """
 
         await self._sv.make_request(
@@ -152,6 +158,8 @@ class Session:
         - **username**: Username of the account to login to
         - **password**: Password of the account to login to
         - **otp** *(optional)*: Optional One-Time Password of the account to login to
+
+        **Session Required:** Yes
         """
 
         params = {
@@ -192,6 +200,8 @@ class Session:
         - **last_name** *(optional)*: Last name of the account
 
         **Returns:** The [`types.Peer`](/types/#peer) of the new account
+
+        **Session Required:** Yes
         """
 
         params = {

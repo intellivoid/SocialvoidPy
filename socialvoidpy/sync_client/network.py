@@ -20,6 +20,8 @@ class Network:
         Gets the peer of the currently logged in account
 
         **Returns:** [`types.Peer`](/types/#peer)
+
+        **Authentication Required:** Yes
         """
 
         return types.Peer.from_json(

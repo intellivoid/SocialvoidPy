@@ -18,6 +18,8 @@ class Account:
     def delete_profile_picture(self) -> bool:
         """
         Removes the profile picture of the currently logged in account
+
+        **Authentication Required:** Yes
         """
 
         return self._sv.make_request(
@@ -34,6 +36,8 @@ class Account:
         **Parameters:**
 
         - **document**: The photo of the profile picture you want set
+
+        **Authentication Required:** Yes
         """
 
         if isinstance(document, types.Document):

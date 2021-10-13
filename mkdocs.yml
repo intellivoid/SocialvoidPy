@@ -20,6 +20,7 @@ markdown_extensions:
     - pymdownx.highlight
     - pymdownx.superfences
     - mkautodoc
+    - admonition
 extra_css:
     - css/custom.css
     - css/autodoc.css

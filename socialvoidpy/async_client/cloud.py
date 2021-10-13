@@ -26,6 +26,8 @@ class Cloud:
         - **document**: A document ID
 
         **Returns:** [`types.Document`](/types/#document)
+
+        **Authentication Required:** Yes (for now?)
         """
 
         # no idea why you want to refetch a document but it is what it is
