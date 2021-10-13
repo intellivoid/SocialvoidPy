@@ -32,6 +32,9 @@ ERROR_MAP = {
     12548: FileUploadError,
     12549: DocumentNotFound,
     12550: AccessDenied,
+    12551: BlockedByPeer,
+    12552: BlockedPeer,
+    12553: SelfInteractionNotPermitted,
     # Server Errors
     16384: InternalServerError,
     16385: DocumentUpload,
@@ -54,4 +57,5 @@ ERROR_MAP = {
     8463: FileTooLarge,
     8464: InvalidHelpDocumentId,
     8465: AgreementRequired,
+    8466: InvalidCursorValue,
 }

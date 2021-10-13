@@ -113,3 +113,9 @@ class AgreementRequired(ValidationError):
     """
     The client/user must agree to the condition to invoke the method
     """
+
+
+class InvalidCursorValue(ValidationError):
+    """
+    The `cursor` parameter contains an invalid value. It cannot be under or equal to zero, see the message for further details
+    """

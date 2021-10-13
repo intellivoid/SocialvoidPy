@@ -47,3 +47,21 @@ class AccessDenied(NetworkError):
     """
     The authenticated peer does not have sufficient permissions to access the requested resource or to invoke a restricted method
     """
+
+
+class BlockedByPeer(NetworkError):
+    """
+    Raised when attempting to interact with a peer that blocked you
+    """
+
+
+class BlockedPeer(NetworkError):
+    """
+    Raised when attempting to interact with a peer that you blocked
+    """
+
+
+class SelfInteractionNotPermitted(NetworkError):
+    """
+    Raised when attempting to invoke a method or change that involves a peer that you are authenticated (e.g. following yourself)
+    """

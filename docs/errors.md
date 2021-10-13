@@ -140,6 +140,21 @@
 ::: socialvoidpy.errors.AccessDenied
     :docstring:
 
+### `BlockedByPeer`
+
+::: socialvoidpy.errors.BlockedByPeer
+    :docstring:
+
+### `BlockedPeer`
+
+::: socialvoidpy.errors.BlockedPeer
+    :docstring:
+
+### `SelfInteractionNotPermitted`
+
+::: socialvoidpy.errors.SelfInteractionNotPermitted
+    :docstring:
+
 ## `ServerError`
 
 ::: socialvoidpy.errors.ServerError
@@ -248,4 +263,9 @@
 ### `AgreementRequired`
 
 ::: socialvoidpy.errors.AgreementRequired
+    :docstring:
+
+### `InvalidCursorValue`
+
+::: socialvoidpy.errors.InvalidCursorValue
     :docstring:
