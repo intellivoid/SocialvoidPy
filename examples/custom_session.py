@@ -30,5 +30,6 @@ try:
         sv.session.session_id = config["socialvoid"]["session_id"]
         sv.session.session_challenge = session_challenge
         sv.session.session_exists = True
+        print(sv.session.get())
 finally:
     sv.close()
