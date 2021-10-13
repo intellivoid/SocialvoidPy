@@ -31,6 +31,17 @@
 ::: socialvoidpy.types.PeerType
     :docstring:
 
+## `Post`
+
+::: socialvoidpy.types.Post
+    :docstring:
+    :members: get_html_text
+
+### `PostType`
+
+::: socialvoidpy.types.PostType
+    :docstring:
+
 ## `Profile`
 
 ::: socialvoidpy.types.Profile
