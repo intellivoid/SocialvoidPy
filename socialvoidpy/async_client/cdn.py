@@ -24,6 +24,15 @@ class CDN:
 
         - **document**: Document to stream the contents of
 
+        **Usage:**
+
+        ```python
+        >>> for i in sv.cdn.stream("35714fd511b6064908da4ed77c12f587-73c59ad25d2a2f95d281abbdba771f3170b9e715009e7f16ff623d9d079a8697-706bdb25"):
+        ...     print(i.decode(), end="")
+        httpx==0.19.*
+        dataclasses==0.8;python_version<'3.7'
+        ```
+
         **Yields:** `bytes`
 
         **Authentication Required:** Yes (for now?)
@@ -62,6 +71,13 @@ class CDN:
         **Parameters:**
 
         - **file**: File path or object to upload
+
+        **Usage:**
+
+        ```python
+        >>> sv.cdn.upload("requirements.txt")
+        Document(id='35714fd511b6064908da4ed77c12f587-73c59ad25d2a2f95d281abbdba771f3170b9e715009e7f16ff623d9d079a8697-706bdb25', file_mime='text/plain', file_name='requirements.txt', file_size=52, file_type=<FileType.DOCUMENT: 'DOCUMENT'>, flags=[])
+        ```
 
         **Returns:** [`types.Document`](/types/#document)
 
