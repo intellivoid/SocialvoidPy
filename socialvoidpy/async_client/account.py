@@ -57,3 +57,35 @@ class Account:
                 )
             )
         ).unwrap()
+
+    async def clear_profile_biography(self) -> bool:
+        """
+        Clears the biography/description of the currently logged in account
+
+        **Authentication Required:** Yes
+        """
+
+        return (
+            await self._sv.make_request(
+                Request(
+                    "account.clear_profile_biography",
+                    {"session_identification": create_session_id(self._sv.session)},
+                )
+            )
+        ).unwrap()
+
+    async def clear_profile_location(self) -> bool:
+        """
+        Clears the location of the currently logged in account
+
+        **Authentication Required:** Yes
+        """
+
+        return (
+            await self._sv.make_request(
+                Request(
+                    "account.clear_profile_location",
+                    {"session_identification": create_session_id(self._sv.session)},
+                )
+            )
+        ).unwrap()

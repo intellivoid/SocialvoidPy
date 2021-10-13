@@ -31,7 +31,7 @@
 
 ::: socialvoidpy.sync_client.Account
     :docstring:
-    :members: delete_profile_picture set_profile_picture
+    :members: delete_profile_picture set_profile_picture clear_profile_biography clear_profile_location
 
 ### `Cloud`
 
