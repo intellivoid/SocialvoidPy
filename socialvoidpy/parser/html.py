@@ -3,8 +3,16 @@ import typing
 from html.parser import HTMLParser
 from collections import defaultdict
 from urllib.parse import quote, unquote, urlsplit
-from ..types.text_entity import _TextEntity
-from ..types.text_entity import *
+from ..types.text_entity import (
+    _TextEntity,
+    BoldTextEntity,
+    ItalicTextEntity,
+    CodeTextEntity,
+    StrikeTextEntity,
+    UnderlineTextEntity,
+    URLTextEntity,
+    MentionTextEntity,
+)
 
 
 def _unparse(
