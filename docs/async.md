@@ -28,7 +28,7 @@
 
 ::: socialvoidpy.async_client.Account
     :docstring:
-    :members: delete_profile_picture set_profile_picture clear_profile_biography clear_profile_location
+    :members: delete_profile_picture set_profile_picture clear_profile_biography clear_profile_location clear_profile_url update_profile_biography update_profile_location update_profile_name update_profile_url
 
 ### `Cloud`
 
