@@ -9,11 +9,7 @@ from socialvoidpy.errors import (
 
 sv = SocialvoidClient("session.json")
 try:
-    try:
-        authenticated = sv.session.get().authenticated
-    except (SessionNotFound, SessionDoesNotExist, SessionExpired):
-        sv.session.create()
-        authenticated = False
+    authenticated = sv.session.get().authenticated
     if not authenticated:
         username = input("Username: ")
         password = getpass.getpass()

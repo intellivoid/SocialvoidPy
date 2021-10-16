@@ -1,6 +1,6 @@
 import typing
 from .. import types
-from ..utils import create_session_id
+from ..utils import create_session_id, auto_create_session
 from ..request import Request
 
 if typing.TYPE_CHECKING:
@@ -15,6 +15,7 @@ class Network:
     def __init__(self, sv: "SocialvoidClient"):
         self._sv = sv
 
+    @auto_create_session
     def get_me(self) -> types.Peer:
         """
         Gets the peer of the currently logged in account

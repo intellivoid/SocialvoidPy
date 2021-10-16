@@ -1,8 +1,5 @@
 # Asynchronous Client
 
-!!! note
-    A method that requires authentication implicitly requires a session since you need one to authenticate
-
 ## `AsyncSocialvoidClient`
 
 ::: socialvoidpy.AsyncSocialvoidClient

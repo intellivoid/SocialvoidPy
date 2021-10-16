@@ -34,11 +34,14 @@ try:
 except IndexError:
     session_challenge = None
 sv = SocialvoidClient(
-    INIWithSeperatedChallengeSessionStorage("session.ini", session_challenge)
+    INIWithSeperatedChallengeSessionStorage("session.ini", session_challenge),
+    client_name="Fridgevoid",
+    client_version="1.0.1",
+    client_platform="Samsung Smart Fridge",
 )
 try:
     if session_challenge is None:
-        sv.session.create("Fridgevoid", "1.0.1", "Samsung Smart Fridge")
+        sv.session.create()
         print(
             "Session challenge (keep it safe! use by passing as an argument):",
             sv.session_storage.get_session_challenge(),

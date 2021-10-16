@@ -12,11 +12,7 @@ from socialvoidpy.errors import (
 async def main():
     sv = AsyncSocialvoidClient("session.json")
     try:
-        try:
-            authenticated = (await sv.session.get()).authenticated
-        except (SessionNotFound, SessionDoesNotExist, SessionExpired):
-            await sv.session.create()
-            authenticated = False
+        authenticated = (await sv.session.get()).authenticated
         if not authenticated:
             username = input("Username: ")
             password = getpass.getpass()

@@ -1,6 +1,6 @@
 import typing
 from .. import types
-from ..utils import async_create_session_id
+from ..utils import async_create_session_id, async_auto_create_session
 from ..request import Request
 
 if typing.TYPE_CHECKING:
@@ -15,6 +15,7 @@ class Cloud:
     def __init__(self, sv: "AsyncSocialvoidClient"):
         self._sv = sv
 
+    @async_auto_create_session
     async def get_document(
         self, document: typing.Union[str, types.Document]
     ) -> types.Document:

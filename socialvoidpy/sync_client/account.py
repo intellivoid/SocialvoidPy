@@ -1,6 +1,6 @@
 import typing
 from .. import types
-from ..utils import create_session_id
+from ..utils import create_session_id, auto_create_session
 from ..request import Request
 
 if typing.TYPE_CHECKING:
@@ -15,6 +15,7 @@ class Account:
     def __init__(self, sv: "SocialvoidClient"):
         self._sv = sv
 
+    @auto_create_session
     def delete_profile_picture(self) -> bool:
         """
         Removes the profile picture of the currently logged in account
@@ -29,6 +30,7 @@ class Account:
             )
         ).unwrap()
 
+    @auto_create_session
     def set_profile_picture(self, document: typing.Union[str, types.Document]) -> bool:
         """
         Sets the profile picture of the currently logged in account
@@ -54,6 +56,7 @@ class Account:
             )
         ).unwrap()
 
+    @auto_create_session
     def clear_profile_biography(self) -> bool:
         """
         Clears the biography/description of the currently logged in account
@@ -68,6 +71,7 @@ class Account:
             )
         ).unwrap()
 
+    @auto_create_session
     def clear_profile_location(self) -> bool:
         """
         Clears the location of the currently logged in account

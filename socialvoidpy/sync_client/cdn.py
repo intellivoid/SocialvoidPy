@@ -1,7 +1,7 @@
 import typing
 import pathlib
 from .. import types
-from ..utils import create_session_id
+from ..utils import create_session_id, auto_create_session
 from ..errors import ERROR_MAP, JSONRPCError, GeneralError
 
 if typing.TYPE_CHECKING:
@@ -16,6 +16,7 @@ class CDN:
     def __init__(self, sv: "SocialvoidClient"):
         self._sv = sv
 
+    @auto_create_session
     def stream(self, document: typing.Union[str, types.Document]):
         """
         Stream a document's contents
@@ -61,6 +62,7 @@ class CDN:
                 raise GeneralError(error["error_code"], error["message"], None)
             yield from resp.iter_bytes()
 
+    @auto_create_session
     def upload(
         self, file: typing.Union[str, pathlib.Path, typing.BinaryIO]
     ) -> types.Document:

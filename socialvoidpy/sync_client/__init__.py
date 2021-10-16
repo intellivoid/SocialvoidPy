@@ -4,8 +4,14 @@ import secrets
 import httpx
 from ..request import Request
 from ..response import Response
-from ..utils import parse_jsonrpc_response, serialize_request, create_session_id
+from ..utils import (
+    parse_jsonrpc_response,
+    serialize_request,
+    create_session_id,
+    get_platform,
+)
 from .. import types
+from ..version import version
 from ..sync_sessionstorage import (
     AbstractSessionStorage,
     MemorySessionStorage,
@@ -33,6 +39,10 @@ class SocialvoidClient:
 
     - **session_storage** (`str`, `pathlib.Path`, `AbstractSessionStorage`, `None`, optional): Path or session storage object for session data persistence
     - **rpc_endpoint** (`str`, optional): RPC endpoint url, set to the official instance by default
+    - **auto_handle_sessions** (`bool`, optional): Automatically handle sessions, set to True by default
+    - **client_name** (`str`, optional): The name of the client, defaults to SocialvoidPy
+    - **client_version** (`str`, optional): The version of the client, defaults to socialvoidpy's version
+    - **client_platform** (`str`, `None`, optional): The platform of the client, defaults to `platform.platform() or "Unknown"`
     """
 
     def __init__(
@@ -41,6 +51,10 @@ class SocialvoidClient:
             typing.Union[str, pathlib.Path, AbstractSessionStorage]
         ] = None,
         rpc_endpoint: str = "http://socialvoid.qlg1.com:5601/",
+        auto_handle_sessions: bool = True,
+        client_name: str = "SocialvoidPy",
+        client_version: str = version,
+        client_platform: typing.Optional[str] = None,
         httpx_client: typing.Optional[httpx.Client] = None,
     ):
         self.rpc_endpoint = rpc_endpoint
@@ -52,6 +66,10 @@ class SocialvoidClient:
         elif isinstance(session_storage, (str, pathlib.Path)):
             session_storage = FileSessionStorage(session_storage)
         self.session_storage = session_storage
+        self.auto_handle_sessions = auto_handle_sessions
+        self.client_name = client_name
+        self.client_version = client_version
+        self.client_platform = client_platform or get_platform()
         self._cached_server_info = None
         self.session = Session(self)
         self.help = Help(self)
@@ -102,8 +120,6 @@ class SocialvoidClient:
         >>> sv.get_protocol_version() >= (1, 1)
         False
         ```
-
-        **Session Required:** No
         """
 
         return tuple(

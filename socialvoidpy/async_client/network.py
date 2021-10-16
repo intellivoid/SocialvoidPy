@@ -1,6 +1,6 @@
 import typing
 from .. import types
-from ..utils import async_create_session_id
+from ..utils import async_create_session_id, async_auto_create_session
 from ..request import Request
 
 if typing.TYPE_CHECKING:
@@ -15,6 +15,7 @@ class Network:
     def __init__(self, sv: "AsyncSocialvoidClient"):
         self._sv = sv
 
+    @async_auto_create_session
     async def get_me(self) -> types.Peer:
         """
         Gets the peer of the currently logged in account

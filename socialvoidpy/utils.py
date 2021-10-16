@@ -2,13 +2,14 @@ import json
 import typing
 import inspect
 import platform
+import functools
 from .request import Request
 from .response import Response
 from .sync_sessionstorage import AbstractSessionStorage
 from .async_sessionstorage import AsyncAbstractSessionStorage
 from .session_challenge import answer_challenge
 from .types.text_entity import TEXT_ENTITY_MAP, _TextEntity
-from .errors import SessionDoesNotExist
+from .errors import SessionDoesNotExist, SessionNotFound, SessionExpired
 
 
 def parse_jsonrpc_response(
@@ -88,3 +89,31 @@ async def async_create_session_id(
 
 def raw_textentities_to_types(entities) -> typing.List[_TextEntity]:
     return [TEXT_ENTITY_MAP.get(i["type"], _TextEntity).from_json(i) for i in entities]
+
+
+def auto_create_session(func):
+    @functools.wraps(func)
+    def wrapper(self, *args, **kw):
+        try:
+            return func(self, *args, **kw)
+        except (SessionDoesNotExist, SessionNotFound, SessionExpired):
+            if not self._sv.auto_handle_sessions:
+                raise
+            self._sv.session.create()
+            return func(self, *args, **kw)
+
+    return wrapper
+
+
+def async_auto_create_session(func):
+    @functools.wraps(func)
+    async def wrapper(self, *args, **kw):
+        try:
+            return await func(self, *args, **kw)
+        except (SessionDoesNotExist, SessionNotFound, SessionExpired):
+            if not self._sv.auto_handle_sessions:
+                raise
+            await self._sv.session.create()
+            return await func(self, *args, **kw)
+
+    return wrapper

@@ -1,7 +1,7 @@
 import typing
 import pathlib
 from .. import types
-from ..utils import async_create_session_id
+from ..utils import async_create_session_id, async_auto_create_session
 from ..errors import ERROR_MAP, JSONRPCError, GeneralError
 
 if typing.TYPE_CHECKING:
@@ -16,6 +16,7 @@ class CDN:
     def __init__(self, sv: "AsyncSocialvoidClient"):
         self._sv = sv
 
+    @async_auto_create_session
     async def stream(self, document: typing.Union[str, types.Document]):
         """
         Stream a document's contents
@@ -62,6 +63,7 @@ class CDN:
             async for i in resp.iter_bytes():
                 yield i
 
+    @async_auto_create_session
     async def upload(
         self, file: typing.Union[str, pathlib.Path, typing.BinaryIO]
     ) -> types.Document:

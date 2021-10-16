@@ -2,7 +2,7 @@ import typing
 import secrets
 from .. import types
 from ..request import Request
-from ..utils import get_platform, create_session_id
+from ..utils import create_session_id, auto_create_session
 from ..version import version
 
 if typing.TYPE_CHECKING:
@@ -24,8 +24,8 @@ class Session:
 
     def create(
         self,
-        name: str = "SocialvoidPy",
-        version: str = version,
+        name: typing.Optional[str] = None,
+        version: typing.Optional[str] = None,
         platform: typing.Optional[str] = None,
     ):
         """
@@ -39,15 +39,17 @@ class Session:
 
         **Parameters:**
 
-        - **name** (`str`, optional): Name of client
-        - **version** (`str`, optional): Version of client
-        - **platform** (`str`, `None`, optional): Platform of client
-
-        **Session Required:** No (it literally makes one)
+        - **name** (`str`, optional): The name of the client, defaults to `SocialvoidClient.client_name`
+        - **version** (`str`, optional): The version of the client, defaults to `SocialvoidClient.client_version`
+        - **platform** (`str`, `None`, optional): The platform of the client, defaults to `SocialvoidClient.client_platform`
         """
 
+        if name is None:
+            name = self._sv.client_name
+        if version is None:
+            version = self._sv.client_version
         if platform is None:
-            platform = get_platform()
+            platform = self._sv.client_platform
         public_hash = secrets.token_hex(32)
         private_hash = secrets.token_hex(32)
         resp = self._sv.make_request(
@@ -68,13 +70,12 @@ class Session:
         self._sv.session_storage.set_session_challenge(resp["challenge"])
         self._sv.session_storage.flush()
 
+    @auto_create_session
     def get(self) -> types.Session:
         """
         Gets information about the current session
 
         **Returns:** [`types.Session`](/types/#Session)
-
-        **Session Required:** Yes
         """
 
         return types.Session.from_json(
@@ -90,11 +91,10 @@ class Session:
             ).unwrap()
         )
 
+    @auto_create_session
     def logout(self) -> None:
         """
         Logs out of the account associated to the session, or does nothing if not logged in
-
-        **Session Required:** Yes
         """
 
         self._sv.make_request(
@@ -105,6 +105,7 @@ class Session:
             )
         )
 
+    @auto_create_session
     def authenticate_user(
         self, username: str, password: str, otp: typing.Optional[str] = None
     ) -> bool:
@@ -122,8 +123,6 @@ class Session:
         - **username** (`str`): Username of the account to login to
         - **password** (`str`): Password of the account to login to
         - **otp** (`str`, `None`, optional): Optional One-Time Password of the account to login to
-
-        **Session Required:** Yes
         """
 
         params = {
@@ -137,6 +136,7 @@ class Session:
             Request("session.authenticate_user", params)
         ).unwrap()
 
+    @auto_create_session
     def register(
         self,
         terms_of_service_id: str,
@@ -164,8 +164,6 @@ class Session:
         - **last_name** (`str`, `None`, optional): Last name of the account
 
         **Returns:** The [`types.Peer`](/types/#peer) of the new account
-
-        **Session Required:** Yes
         """
 
         params = {
