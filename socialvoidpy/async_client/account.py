@@ -1,6 +1,6 @@
 import typing
 from .. import types
-from ..utils import create_session_id
+from ..utils import async_create_session_id
 from ..request import Request
 
 if typing.TYPE_CHECKING:
@@ -26,7 +26,11 @@ class Account:
             await self._sv.make_request(
                 Request(
                     "account.delete_profile_picture",
-                    {"session_identification": create_session_id(self._sv.session)},
+                    {
+                        "session_identification": await async_create_session_id(
+                            self._sv.session_storage
+                        )
+                    },
                 )
             )
         ).unwrap()
@@ -51,7 +55,9 @@ class Account:
                 Request(
                     "account.set_profile_picture",
                     {
-                        "session_identification": create_session_id(self._sv.session),
+                        "session_identification": await async_create_session_id(
+                            self._sv.session_storage
+                        ),
                         "document": document,
                     },
                 )
@@ -69,7 +75,11 @@ class Account:
             await self._sv.make_request(
                 Request(
                     "account.clear_profile_biography",
-                    {"session_identification": create_session_id(self._sv.session)},
+                    {
+                        "session_identification": await async_create_session_id(
+                            self._sv.session_storage
+                        )
+                    },
                 )
             )
         ).unwrap()
@@ -85,7 +95,11 @@ class Account:
             await self._sv.make_request(
                 Request(
                     "account.clear_profile_location",
-                    {"session_identification": create_session_id(self._sv.session)},
+                    {
+                        "session_identification": await async_create_session_id(
+                            self._sv.session_storage
+                        )
+                    },
                 )
             )
         ).unwrap()

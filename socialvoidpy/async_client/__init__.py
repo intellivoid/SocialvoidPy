@@ -1,10 +1,17 @@
 import secrets
+import pathlib
 import typing
 import httpx
 from ..request import Request
 from .. import types
 from ..response import Response
-from ..utils import parse_jsonrpc_response, serialize_request
+from ..utils import parse_jsonrpc_response, serialize_request, maybe_await
+from ..sync_sessionstorage import (
+    AbstractSessionStorage,
+    MemorySessionStorage,
+    FileSessionStorage,
+)
+from ..async_sessionstorage import AsyncAbstractSessionStorage
 from .session import Session
 from .help import Help
 from .network import Network
@@ -20,18 +27,22 @@ class AsyncSocialvoidClient:
     **Usage:**
 
     ```python
-    >>> sv = socialvoidpy.AsyncSocialvoidClient('socialvoid.session')
+    >>> sv = socialvoidpy.AsyncSocialvoidClient("socialvoid.session")
     ```
 
     **Parameters:**
 
-    - **filename** (`str`, `None`, optional): Path for session persistence
+    - **session_storage** (`str`, `pathlib.Path`, `AbstractSessionStorage`, `AsyncAbstractSessionStorage`, `None`, optional): Path or session storage object for session data persistence
     - **rpc_endpoint** (`str`, optional): RPC endpoint url, set to the official instance by defaul
     """
 
     def __init__(
         self,
-        filename: typing.Optional[str] = None,
+        session_storage: typing.Optional[
+            typing.Union[
+                str, pathlib.Path, AbstractSessionStorage, AsyncAbstractSessionStorage
+            ]
+        ] = None,
         rpc_endpoint: str = "http://socialvoid.qlg1.com:5601/",
         httpx_client: typing.Optional[httpx.AsyncClient] = None,
     ):
@@ -39,15 +50,13 @@ class AsyncSocialvoidClient:
         if httpx_client is None:
             httpx_client = httpx.AsyncClient()
         self.httpx_client = httpx_client
-        if filename is None:
-            self.session = Session(self)
-        else:
-            try:
-                self.session = Session.load(self, filename)
-            except FileNotFoundError:
-                self.session = Session(self)
-        self._session_filename = filename
+        if session_storage is None:
+            session_storage = MemorySessionStorage()
+        elif isinstance(session_storage, (str, pathlib.Path)):
+            session_storage = FileSessionStorage(session_storage)
+        self.session_storage = session_storage
         self._cached_server_info = None
+        self.session = Session(self)
         self.help = Help(self)
         self.network = Network(self)
         self.account = Account(self)
@@ -56,13 +65,10 @@ class AsyncSocialvoidClient:
 
     async def aclose(self):
         """
-        Closes the HTTPX client, should be called after you're finished using the object
+        Closes the session storage and httpx client, should be called after you're finished using the object
         """
+        await maybe_await(self.session_storage.close())
         await self.httpx_client.aclose()
-
-    def _save_session(self):
-        if self._session_filename is not None:
-            self.session.save(self._session_filename)
 
     async def _get_cached_server_info(self) -> types.ServerInformation:
         if not self._cached_server_info:

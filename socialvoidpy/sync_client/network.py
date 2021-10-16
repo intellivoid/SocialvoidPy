@@ -28,7 +28,11 @@ class Network:
             self._sv.make_request(
                 Request(
                     "network.get_me",
-                    {"session_identification": create_session_id(self._sv.session)},
+                    {
+                        "session_identification": create_session_id(
+                            self._sv.session_storage
+                        )
+                    },
                 )
             ).unwrap()
         )

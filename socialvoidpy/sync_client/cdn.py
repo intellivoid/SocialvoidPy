@@ -41,7 +41,7 @@ class CDN:
         if isinstance(document, types.Document):
             document = document.id
         params = {
-            **create_session_id(self._sv.session),
+            **create_session_id(self._sv.session_storage),
             "action": "download",
             "document": document,
         }
@@ -84,7 +84,7 @@ class CDN:
         """
 
         params = {
-            **create_session_id(self._sv.session),
+            **create_session_id(self._sv.session_storage),
             "action": "upload",
         }
         server_info = self._sv._get_cached_server_info()

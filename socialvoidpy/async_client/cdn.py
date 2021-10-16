@@ -1,7 +1,7 @@
 import typing
 import pathlib
 from .. import types
-from ..utils import create_session_id
+from ..utils import async_create_session_id
 from ..errors import ERROR_MAP, JSONRPCError, GeneralError
 
 if typing.TYPE_CHECKING:
@@ -41,7 +41,7 @@ class CDN:
         if isinstance(document, types.Document):
             document = document.id
         params = {
-            **create_session_id(self._sv.session),
+            **await async_create_session_id(self._sv.session_storage),
             "action": "download",
             "document": document,
         }
@@ -85,7 +85,7 @@ class CDN:
         """
 
         params = {
-            **create_session_id(self._sv.session),
+            **await async_create_session_id(self._sv.session_storage),
             "action": "upload",
         }
         server_info = await self._sv._get_cached_server_info()

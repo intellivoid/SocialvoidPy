@@ -1,10 +1,16 @@
 import typing
+import pathlib
 import secrets
 import httpx
 from ..request import Request
 from ..response import Response
 from ..utils import parse_jsonrpc_response, serialize_request, create_session_id
 from .. import types
+from ..sync_sessionstorage import (
+    AbstractSessionStorage,
+    MemorySessionStorage,
+    FileSessionStorage,
+)
 from .session import Session
 from .help import Help
 from .network import Network
@@ -20,18 +26,20 @@ class SocialvoidClient:
     **Usage:**
 
     ```python
-    >>> sv = socialvoidpy.SocialvoidClient('socialvoid.session')
+    >>> sv = socialvoidpy.SocialvoidClient("socialvoid.session")
     ```
 
     **Parameters:**
 
-    - **filename** (`str`, `None`, optional): Path for session persistence
+    - **session_storage** (`str`, `pathlib.Path`, `AbstractSessionStorage`, `None`, optional): Path or session storage object for session data persistence
     - **rpc_endpoint** (`str`, optional): RPC endpoint url, set to the official instance by defaul
     """
 
     def __init__(
         self,
-        filename: typing.Optional[str] = None,
+        session_storage: typing.Optional[
+            typing.Union[str, pathlib.Path, AbstractSessionStorage]
+        ] = None,
         rpc_endpoint: str = "http://socialvoid.qlg1.com:5601/",
         httpx_client: typing.Optional[httpx.Client] = None,
     ):
@@ -39,15 +47,13 @@ class SocialvoidClient:
         if httpx_client is None:
             httpx_client = httpx.Client()
         self.httpx_client = httpx_client
-        if filename is None:
-            self.session = Session(self)
-        else:
-            try:
-                self.session = Session.load(self, filename)
-            except FileNotFoundError:
-                self.session = Session(self)
-        self._session_filename = filename
+        if session_storage is None:
+            session_storage = MemorySessionStorage()
+        elif isinstance(session_storage, (str, pathlib.Path)):
+            session_storage = FileSessionStorage(session_storage)
+        self.session_storage = session_storage
         self._cached_server_info = None
+        self.session = Session(self)
         self.help = Help(self)
         self.network = Network(self)
         self.account = Account(self)
@@ -56,16 +62,13 @@ class SocialvoidClient:
 
     def close(self):
         """
-        Closes the HTTPX client, should be called after you're finished using the object
+        Closes the session storage and httpx client, should be called after you're finished using the object
         """
+        self.session_storage.close()
         self.httpx_client.close()
 
     def __del__(self):
         self.close()
-
-    def _save_session(self):
-        if self._session_filename is not None:
-            self.session.save(self._session_filename)
 
     def _get_cached_server_info(self) -> types.ServerInformation:
         if not self._cached_server_info:

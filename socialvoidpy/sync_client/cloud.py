@@ -38,7 +38,9 @@ class Cloud:
                 Request(
                     "cloud.get_document",
                     {
-                        "session_identification": create_session_id(self._sv.session),
+                        "session_identification": create_session_id(
+                            self._sv.session_storage
+                        ),
                         "document": document,
                     },
                 )

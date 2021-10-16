@@ -1,8 +1,11 @@
 import json
 import typing
+import inspect
 import platform
 from .request import Request
 from .response import Response
+from .sync_sessionstorage import AbstractSessionStorage
+from .async_sessionstorage import AsyncAbstractSessionStorage
 from .session_challenge import answer_challenge
 from .types.text_entity import TEXT_ENTITY_MAP, _TextEntity
 from .errors import SessionDoesNotExist
@@ -38,15 +41,48 @@ def get_platform() -> str:
     return platform.system() or "Unknown"
 
 
-def create_session_id(session) -> dict:
-    if not session.session_exists:
+_maybe_await_T = typing.TypeVar("T")
+
+
+async def maybe_await(
+    thing: typing.Union[_maybe_await_T, typing.Awaitable[_maybe_await_T]]
+) -> _maybe_await_T:
+    if inspect.isawaitable(thing):
+        thing = await thing
+    return thing
+
+
+def create_session_id(session: AbstractSessionStorage) -> dict:
+    public_hash = session.get_public_hash()
+    private_hash = session.get_private_hash()
+    session_id = session.get_session_id()
+    session_challenge = session.get_session_challenge()
+    session_exists = public_hash and private_hash and session_id and session_challenge
+    if not session_exists:
         raise SessionDoesNotExist(None, "Session does not exist", None)
     return {
-        "session_id": session.session_id,
-        "client_public_hash": session.public_hash,
-        "challenge_answer": answer_challenge(
-            session.private_hash, session.session_challenge
-        ),
+        "session_id": session_id,
+        "client_public_hash": public_hash,
+        "challenge_answer": answer_challenge(private_hash, session_challenge),
+    }
+
+
+async def async_create_session_id(
+    session: typing.Union[AsyncAbstractSessionStorage, AbstractSessionStorage]
+) -> dict:
+    if isinstance(session, AbstractSessionStorage):
+        return create_session_id(session)
+    public_hash = await session.get_public_hash()
+    private_hash = await session.get_private_hash()
+    session_id = await session.get_session_id()
+    session_challenge = await session.get_session_challenge()
+    session_exists = public_hash and private_hash and session_id and session_challenge
+    if not session_exists:
+        raise SessionDoesNotExist(None, "Session does not exist", None)
+    return {
+        "session_id": session_id,
+        "client_public_hash": public_hash,
+        "challenge_answer": answer_challenge(private_hash, session_challenge),
     }
 
 

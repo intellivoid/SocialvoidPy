@@ -1,17 +1,17 @@
 import getpass
 from socialvoidpy import SocialvoidClient
 from socialvoidpy.errors import (
+    SessionNotFound,
+    SessionDoesNotExist,
     SessionExpired,
     TwoFactorAuthenticationRequired,
 )
 
 sv = SocialvoidClient("session.json")
 try:
-    if not sv.session.session_exists:
-        sv.session.create()
     try:
         authenticated = sv.session.get().authenticated
-    except SessionExpired:
+    except (SessionNotFound, SessionDoesNotExist, SessionExpired):
         sv.session.create()
         authenticated = False
     if not authenticated:

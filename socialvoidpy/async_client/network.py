@@ -1,6 +1,6 @@
 import typing
 from .. import types
-from ..utils import create_session_id
+from ..utils import async_create_session_id
 from ..request import Request
 
 if typing.TYPE_CHECKING:
@@ -29,7 +29,11 @@ class Network:
                 await self._sv.make_request(
                     Request(
                         "network.get_me",
-                        {"session_identification": create_session_id(self._sv.session)},
+                        {
+                            "session_identification": await async_create_session_id(
+                                self._sv.session_storage
+                            )
+                        },
                     )
                 )
             ).unwrap()

@@ -3,7 +3,7 @@ import typing
 import secrets
 from .. import types
 from ..request import Request
-from ..utils import get_platform, create_session_id
+from ..utils import get_platform, async_create_session_id, maybe_await
 from ..version import version
 
 if typing.TYPE_CHECKING:
@@ -20,44 +20,8 @@ class Session:
     def __init__(
         self,
         sv: "AsyncSocialvoidClient",
-        public_hash: typing.Optional[str] = None,
-        private_hash: typing.Optional[str] = None,
-        session_id: typing.Optional[str] = None,
-        session_challenge: typing.Optional[str] = None,
-        session_exists: bool = False,
     ):
         self._sv = sv
-        self.public_hash = public_hash
-        self.private_hash = private_hash
-        self.session_id = session_id
-        self.session_challenge = session_challenge
-        self.session_exists = session_exists
-
-    @classmethod
-    def load(cls, sv: "AsyncSocialvoidClient", filename: str) -> "Session":
-        with open(filename) as file:
-            data = json.load(file)
-        return cls(
-            sv,
-            data.get("public_hash"),
-            data.get("private_hash"),
-            data.get("session_id"),
-            data.get("session_challenge"),
-            data.get("session_exists"),
-        )
-
-    def save(self, filename: str):
-        with open(filename, "w+") as file:
-            json.dump(
-                {
-                    "public_hash": self.public_hash,
-                    "private_hash": self.private_hash,
-                    "session_id": self.session_id,
-                    "session_challenge": self.session_challenge,
-                    "session_exists": self.session_exists,
-                },
-                file,
-            )
 
     async def create(
         self,
@@ -85,8 +49,8 @@ class Session:
 
         if platform is None:
             platform = get_platform()
-        self.public_hash = public_hash = secrets.token_hex(32)
-        self.private_hash = private_hash = secrets.token_hex(32)
+        public_hash = secrets.token_hex(32)
+        private_hash = secrets.token_hex(32)
         resp = (
             await self._sv.make_request(
                 Request(
@@ -101,10 +65,13 @@ class Session:
                 )
             )
         ).unwrap()
-        self.session_id = resp["id"]
-        self.session_challenge = resp["challenge"]
-        self.session_exists = True
-        self._sv._save_session()
+        await maybe_await(self._sv.session_storage.set_public_hash(public_hash))
+        await maybe_await(self._sv.session_storage.set_private_hash(private_hash))
+        await maybe_await(self._sv.session_storage.set_session_id(resp["id"]))
+        await maybe_await(
+            self._sv.session_storage.set_session_challenge(resp["challenge"])
+        )
+        await maybe_await(self._sv.session_storage.flush())
 
     async def get(self) -> types.Session:
         """
@@ -120,7 +87,11 @@ class Session:
                 await self._sv.make_request(
                     Request(
                         "session.get",
-                        {"session_identification": create_session_id(self)},
+                        {
+                            "session_identification": await async_create_session_id(
+                                self._sv.session_storage
+                            )
+                        },
                     )
                 )
             ).unwrap()
@@ -136,7 +107,11 @@ class Session:
         await self._sv.make_request(
             Request(
                 "session.logout",
-                {"session_identification": create_session_id(self)},
+                {
+                    "session_identification": await async_create_session_id(
+                        self._sv.session_storage
+                    )
+                },
                 notification=True,
             )
         )
@@ -163,7 +138,9 @@ class Session:
         """
 
         params = {
-            "session_identification": create_session_id(self),
+            "session_identification": await async_create_session_id(
+                self._sv.session_storage
+            ),
             "username": username,
             "password": password,
         }
@@ -205,7 +182,9 @@ class Session:
         """
 
         params = {
-            "session_identification": create_session_id(self),
+            "session_identification": await async_create_session_id(
+                self._sv.session_storage
+            ),
             "terms_of_service_id": terms_of_service_id,
             "terms_of_service_agree": True,
             "username": username,

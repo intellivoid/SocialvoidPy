@@ -25,7 +25,7 @@ class Account:
         return self._sv.make_request(
             Request(
                 "account.delete_profile_picture",
-                {"session_identification": create_session_id(self._sv.session)},
+                {"session_identification": create_session_id(self._sv.session_storage)},
             )
         ).unwrap()
 
@@ -46,7 +46,9 @@ class Account:
             Request(
                 "account.set_profile_picture",
                 {
-                    "session_identification": create_session_id(self._sv.session),
+                    "session_identification": create_session_id(
+                        self._sv.session_storage
+                    ),
                     "document": document,
                 },
             )
@@ -62,7 +64,7 @@ class Account:
         return self._sv.make_request(
             Request(
                 "account.clear_profile_biography",
-                {"session_identification": create_session_id(self._sv.session)},
+                {"session_identification": create_session_id(self._sv.session_storage)},
             )
         ).unwrap()
 
@@ -76,6 +78,6 @@ class Account:
         return self._sv.make_request(
             Request(
                 "account.clear_profile_location",
-                {"session_identification": create_session_id(self._sv.session)},
+                {"session_identification": create_session_id(self._sv.session_storage)},
             )
         ).unwrap()

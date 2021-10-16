@@ -2,6 +2,8 @@ import asyncio
 import getpass
 from socialvoidpy import AsyncSocialvoidClient
 from socialvoidpy.errors import (
+    SessionNotFound,
+    SessionDoesNotExist,
     SessionExpired,
     TwoFactorAuthenticationRequired,
 )
@@ -10,11 +12,9 @@ from socialvoidpy.errors import (
 async def main():
     sv = AsyncSocialvoidClient("session.json")
     try:
-        if not sv.session.session_exists:
-            await sv.session.create()
         try:
             authenticated = (await sv.session.get()).authenticated
-        except SessionExpired:
+        except (SessionNotFound, SessionDoesNotExist, SessionExpired):
             await sv.session.create()
             authenticated = False
         if not authenticated:

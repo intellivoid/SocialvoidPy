@@ -1,6 +1,6 @@
 import typing
 from .. import types
-from ..utils import create_session_id
+from ..utils import async_create_session_id
 from ..request import Request
 
 if typing.TYPE_CHECKING:
@@ -39,8 +39,8 @@ class Cloud:
                     Request(
                         "cloud.get_document",
                         {
-                            "session_identification": create_session_id(
-                                self._sv.session
+                            "session_identification": await async_create_session_id(
+                                self._sv.session_storage
                             ),
                             "document": document,
                         },
