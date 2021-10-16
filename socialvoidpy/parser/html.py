@@ -111,7 +111,6 @@ class _EntityHTMLParser(HTMLParser):
             self._building_entities["URL"].append([URLTextEntity, None, 0, url])
 
     def handle_data(self, data: str):
-        data = html.unescape(data)
         for i in self._building_entities.values():
             for j in i:
                 if j[1] is None:
