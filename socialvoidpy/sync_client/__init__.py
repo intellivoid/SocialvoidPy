@@ -32,7 +32,7 @@ class SocialvoidClient:
     **Parameters:**
 
     - **session_storage** (`str`, `pathlib.Path`, `AbstractSessionStorage`, `None`, optional): Path or session storage object for session data persistence
-    - **rpc_endpoint** (`str`, optional): RPC endpoint url, set to the official instance by defaul
+    - **rpc_endpoint** (`str`, optional): RPC endpoint url, set to the official instance by default
     """
 
     def __init__(
