@@ -269,3 +269,13 @@
 
 ::: socialvoidpy.errors.InvalidCursorValue
     :docstring:
+
+### `InvalidGeoLocation`
+
+::: socialvoidpy.errors.InvalidGeoLocation
+    :docstring:
+
+### `InvalidURLValue`
+
+::: socialvoidpy.errors.InvalidURLValue
+    :docstring:

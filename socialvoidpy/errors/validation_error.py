@@ -119,3 +119,15 @@ class InvalidCursorValue(ValidationError):
     """
     The `cursor` parameter contains an invalid value. It cannot be under or equal to zero, see the message for further details
     """
+
+
+class InvalidGeoLocation(ValidationError):
+    """
+    The geolocation provided is invalid and/or too long
+    """
+
+
+class InvalidURLValue(ValidationError):
+    """
+    The URL provided is invalid
+    """

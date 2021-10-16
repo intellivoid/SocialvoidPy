@@ -58,4 +58,6 @@ ERROR_MAP = {
     8464: InvalidHelpDocumentId,
     8465: AgreementRequired,
     8466: InvalidCursorValue,
+    8467: InvalidGeoLocation,
+    8468: InvalidURLValue,
 }
