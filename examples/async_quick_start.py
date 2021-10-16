@@ -27,7 +27,7 @@ async def main():
                 await sv.session.authenticate_user(username, password, otp)
         print(await sv.network.get_me())
     finally:
-        await sv.aclose()
+        await sv.close()
 
 
 asyncio.get_event_loop().run_until_complete(main())

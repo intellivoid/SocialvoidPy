@@ -63,7 +63,7 @@ class AsyncSocialvoidClient:
         self.cloud = Cloud(self)
         self.cdn = CDN(self)
 
-    async def aclose(self):
+    async def close(self):
         """
         Closes the session storage and httpx client, should be called after you're finished using the object
         """
