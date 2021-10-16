@@ -45,12 +45,14 @@ class Post(BaseClass):
     - **raw_text** (`str`, `None`): Raw text of the post
     - **entities** (`TextEntity[]`): Text entities of the raw text
     - **mentioned_peers** ([`Peer[]`](#peer)): Mentioned peers in the post
-    - **reply_to_post** (`Post`, `None`): What this post is replying to
-    - **quoted_post** (`Post`, `None`): What this post was quoting
-    - **reposted_post** (`Post`, `None`): The original post
+    - **reply_to_post** (`Post`, `None`): What this post is replying to if any
+    - **quoted_post** (`Post`, `None`): What this post was quoting if any
+    - **reposted_post** (`Post`, `None`): The original post if any
+    - **original_thread_post** (`Post`, `None`): The original thread if any
     - **like_count** (`int`, `None`): Amount of times this post has been liked
     - **repost_count** (`int`, `None`): Amount of times this post has been reposted
     - **quote_count** (`int`, `None`): Amount of times this post has been quoted
+    - **reply_count** (`int`, `None`): Amount of times this post has been replied to
     - **posted_timestamp** (`datetime.datetime`): When this post was posted
     - **flags** (`str[]`): Flags set on this post
     """
@@ -65,9 +67,11 @@ class Post(BaseClass):
     reply_to_post: typing.Optional["Post"]
     quoted_post: typing.Optional["Post"]
     reposted_post: typing.Optional["Post"]
+    original_thread_post: typing.Optional["Post"]
     like_count: typing.Optional[int]
     repost_count: typing.Optional[int]
     quote_count: typing.Optional[int]
+    reply_count: typing.Optional[int]
     posted_timestamp: datetime
     flags: typing.List[str]
 
@@ -79,14 +83,16 @@ class Post(BaseClass):
             Peer.from_json(resp["peer"]),
             resp["source"],
             resp["text"],
-            raw_textentities_to_types(resp["entities"] or []),
-            [Peer.from_json(i) for i in resp["mentioned_peers"] or []],
+            raw_textentities_to_types(resp["entities"]),
+            [Peer.from_json(i) for i in resp["mentioned_peers"]],
             Post.from_json(resp["reply_to_post"]),
             Post.from_json(resp["quoted_post"]),
             Post.from_json(resp["reposted_post"]),
-            resp["likes_count"],  # intentional s because it's in the standard
-            resp["reposts_count"],  # intentional s because it's in the standard
-            resp["quotes_count"],  # intentional s because it's in the standard
+            Post.from_json(resp["original_thread_post"]),
+            resp["like_count"],
+            resp["repost_count"],
+            resp["quote_count"],
+            resp["reply_count"],
             datetime.fromtimestamp(resp["posted_timestamp"]),
             resp["flags"],
         )
