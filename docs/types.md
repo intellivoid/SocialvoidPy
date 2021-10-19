@@ -57,6 +57,11 @@
 ::: socialvoidpy.types.Session
     :docstring:
 
+## `RelationshipType`
+
+::: socialvoidpy.types.RelationshipType
+    :docstring:
+
 ## Text Entities
 
 ### `BoldTextEntity`
