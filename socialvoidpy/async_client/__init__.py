@@ -10,6 +10,7 @@ from ..utils import (
     serialize_request,
     create_session_id,
     get_platform,
+    maybe_await,
 )
 from ..version import version
 from ..sync_sessionstorage import (
