@@ -22,7 +22,7 @@
 
 ::: socialvoidpy.sync_client.Network
     :docstring:
-    :members: get_me
+    :members: get_me get_peer get_profile follow_peer unfollow_peer get_followers get_following iter_followers iter_following
 
 ### `Account`
 
