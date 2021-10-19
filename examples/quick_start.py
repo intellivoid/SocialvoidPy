@@ -7,8 +7,7 @@ from socialvoidpy.errors import (
     TwoFactorAuthenticationRequired,
 )
 
-sv = SocialvoidClient("session.json")
-try:
+with SocialvoidClient("session.json") as sv:
     authenticated = sv.session.get().authenticated
     if not authenticated:
         username = input("Username: ")
@@ -19,5 +18,3 @@ try:
             otp = input("2FA: ")
             sv.session.authenticate_user(username, password, otp)
     print(sv.network.get_me())
-finally:
-    sv.close()

@@ -10,8 +10,7 @@ from socialvoidpy.errors import (
 
 
 async def main():
-    sv = AsyncSocialvoidClient("session.json")
-    try:
+    async with AsyncSocialvoidClient("session.json") as sv:
         authenticated = (await sv.session.get()).authenticated
         if not authenticated:
             username = input("Username: ")
@@ -22,8 +21,6 @@ async def main():
                 otp = input("2FA: ")
                 await sv.session.authenticate_user(username, password, otp)
         print(await sv.network.get_me())
-    finally:
-        await sv.close()
 
 
 asyncio.get_event_loop().run_until_complete(main())

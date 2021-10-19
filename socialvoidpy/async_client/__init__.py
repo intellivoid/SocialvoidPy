@@ -89,6 +89,12 @@ class AsyncSocialvoidClient:
         await maybe_await(self.session_storage.close())
         await self.httpx_client.aclose()
 
+    async def __aenter__(self):
+        return self
+
+    async def __aexit__(self, exc_type, exc_value, traceback):
+        await self.close()
+
     async def _get_cached_server_info(self) -> types.ServerInformation:
         if not self._cached_server_info:
             self._cached_server_info = await self.help.get_server_information()
