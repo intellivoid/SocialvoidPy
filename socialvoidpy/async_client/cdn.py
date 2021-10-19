@@ -17,7 +17,9 @@ class CDN:
         self._sv = sv
 
     @async_auto_create_session
-    async def stream(self, document: typing.Union[str, types.Document]):
+    async def stream(
+        self, document: typing.Union[str, types.Document]
+    ) -> typing.AsyncIterator[bytes]:
         """
         Stream a document's contents
 

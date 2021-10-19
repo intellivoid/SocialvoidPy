@@ -17,7 +17,9 @@ class CDN:
         self._sv = sv
 
     @auto_create_session
-    def stream(self, document: typing.Union[str, types.Document]):
+    def stream(
+        self, document: typing.Union[str, types.Document]
+    ) -> typing.Iterator[bytes]:
         """
         Stream a document's contents
 
