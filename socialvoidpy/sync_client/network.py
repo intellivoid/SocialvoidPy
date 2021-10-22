@@ -174,7 +174,7 @@ class Network:
             peer = peer.id
         params = {
             "session_identification": create_session_id(self._sv.session_storage),
-            "cursor": page,
+            "page": page,
         }
         if peer:
             params["peer"] = peer
@@ -202,7 +202,7 @@ class Network:
             peer = peer.id
         params = {
             "session_identification": create_session_id(self._sv.session_storage),
-            "cursor": page,
+            "page": page,
         }
         if peer:
             params["peer"] = peer

@@ -115,9 +115,9 @@ class AgreementRequired(ValidationError):
     """
 
 
-class InvalidCursorValue(ValidationError):
+class InvalidPageValue(ValidationError):
     """
-    The `cursor` parameter contains an invalid value. It cannot be under or equal to zero, see the message for further details
+    The `page` parameter contains an invalid value. It cannot be under or equal to zero, see the message for further details
     """
 
 

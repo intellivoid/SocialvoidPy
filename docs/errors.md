@@ -265,9 +265,9 @@
 ::: socialvoidpy.errors.AgreementRequired
     :docstring:
 
-### `InvalidCursorValue`
+### `InvalidPageValue`
 
-::: socialvoidpy.errors.InvalidCursorValue
+::: socialvoidpy.errors.InvalidPageValue
     :docstring:
 
 ### `InvalidGeoLocation`
