@@ -25,6 +25,7 @@ from .network import Network
 from .account import Account
 from .cloud import Cloud
 from .cdn import CDN
+from .timeline import Timeline
 
 
 class AsyncSocialvoidClient:
@@ -81,6 +82,7 @@ class AsyncSocialvoidClient:
         self.account = Account(self)
         self.cloud = Cloud(self)
         self.cdn = CDN(self)
+        self.timeline = Timeline(self)
 
     async def close(self):
         """

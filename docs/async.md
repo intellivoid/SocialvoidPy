@@ -41,3 +41,9 @@
 ::: socialvoidpy.async_client.CDN
     :docstring:
     :members: stream upload
+
+### `Timeline`
+
+::: socialvoidpy.async_client.Timeline
+    :docstring:
+    :members: compose get_post delete like get_feed get_likers get_reposters get_quotes get_replies iter_feed iter_likers iter_reposters iter_quotes iter_replies
