@@ -130,27 +130,6 @@ class Account:
         ).unwrap()
 
     @async_auto_create_session
-    async def clear_profile_url(self) -> bool:
-        """
-        Clears the URL of the currently logged in account
-
-        **Authentication Required:** Yes
-        """
-
-        return await (
-            self._sv.make_request(
-                Request(
-                    "account.clear_profile_url",
-                    {
-                        "session_identification": create_session_id(
-                            self._sv.session_storage
-                        )
-                    },
-                )
-            )
-        ).unwrap()
-
-    @async_auto_create_session
     async def update_profile_biography(self, biography: str) -> bool:
         """
         Sets the biography of the currently logged in account
@@ -167,7 +146,7 @@ class Account:
                 Request(
                     "account.update_profile_biography",
                     {
-                        "session_identification": create_session_id(
+                        "session_identification": await async_create_session_id(
                             self._sv.session_storage
                         ),
                         "biography": biography,
@@ -193,7 +172,7 @@ class Account:
                 Request(
                     "account.update_profile_biography",
                     {
-                        "session_identification": create_session_id(
+                        "session_identification": await async_create_session_id(
                             self._sv.session_storage
                         ),
                         "location": location,
@@ -218,7 +197,9 @@ class Account:
         """
 
         params = {
-            "session_identification": create_session_id(self._sv.session_storage),
+            "session_identification": await async_create_session_id(
+                self._sv.session_storage
+            ),
             "first_name": first_name,
         }
         if last_name:
@@ -244,7 +225,7 @@ class Account:
                 Request(
                     "account.update_profile_url",
                     {
-                        "session_identification": create_session_id(
+                        "session_identification": await async_create_session_id(
                             self._sv.session_storage
                         ),
                         "url": url,
