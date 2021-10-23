@@ -60,4 +60,7 @@ ERROR_MAP = {
     8466: InvalidPageValue,
     8467: InvalidGeoLocation,
     8468: InvalidURLValue,
+    8469: TooManyAttachments,
+    8470: InvalidAttachments,
+    8471: InvalidFileName,
 }

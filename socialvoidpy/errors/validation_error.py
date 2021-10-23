@@ -131,3 +131,21 @@ class InvalidURLValue(ValidationError):
     """
     The URL provided is invalid
     """
+
+
+class TooManyAttachments(ValidationError):
+    """
+    Raised when the amount of attachments exceeds what the server supports
+    """
+
+
+class InvalidAttachments(ValidationError):
+    """
+    Raised when the given attachments are invalid
+    """
+
+
+class InvalidFileName(ValidationError):
+    """
+    Raised when the given file name is invalid
+    """

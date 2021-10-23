@@ -279,3 +279,18 @@
 
 ::: socialvoidpy.errors.InvalidURLValue
     :docstring:
+
+### `TooManyAttachments`
+
+::: socialvoidpy.errors.TooManyAttachments
+    :docstring:
+
+### `InvalidAttachments`
+
+::: socialvoidpy.errors.InvalidAttachments
+    :docstring:
+
+### `InvalidFileName`
+
+::: socialvoidpy.errors.InvalidFileName
+    :docstring:
