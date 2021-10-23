@@ -85,10 +85,12 @@ class Post(BaseClass):
             resp["text"],
             raw_textentities_to_types(resp["entities"]),
             [Peer.from_json(i) for i in resp["mentioned_peers"]],
-            Post.from_json(resp["reply_to_post"]),
-            Post.from_json(resp["quoted_post"]),
-            Post.from_json(resp["reposted_post"]),
-            Post.from_json(resp["original_thread_post"]),
+            Post.from_json(resp["reply_to_post"]) if resp["reply_to_post"] else None,
+            Post.from_json(resp["quoted_post"]) if resp["quoted_post"] else None,
+            Post.from_json(resp["reposted_post"]) if resp["reposted_post"] else None,
+            Post.from_json(resp["original_thread_post"])
+            if resp["original_thread_post"]
+            else None,
             resp["like_count"],
             resp["repost_count"],
             resp["quote_count"],
