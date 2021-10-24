@@ -19,6 +19,7 @@ class ServerInformation(BaseClass):
     - **retrieve_reposts_max_limit** (`int`): The maximum amount of reposts that can be retrieved at once with `timeline.get_reposted_peers` via the `page` parameter
     - **retrieve_replies_max_limit** (`int`): The maximum amount of replies that can be retrieved at once with `timeline.get_replies` via the `page` parameter
     - **retrieve_quotes_max_limit** (`int`): The maximum amount of quotes that can be retrieved at once with `timeline.get_quotes` via the `page` parameter
+    - **retrieve_feed_max_limit** (`int`): The maximum amount of posts that can be retrieved at once with `timeline.get_feed` via the `page` parameter
     - **retrieve_followers_max_limit** (`int`): The maximum amount of followers that can be retrieved at once with `network.get_followers` via the `page` parameter
     - **retrieve_following_max_limit** (`int`): The maximum amount of following peers that can be retrieved at once with `network.get_following` via the `page` parameter
     """
@@ -33,6 +34,7 @@ class ServerInformation(BaseClass):
     retrieve_reposts_max_limit: int
     retrieve_replies_max_limit: int
     retrieve_quotes_max_limit: int
+    retrieve_feed_max_limit: int
     retrieve_followers_max_limit: int
     retrieve_following_max_limit: int
 
@@ -49,6 +51,7 @@ class ServerInformation(BaseClass):
             resp["retrieve_reposts_max_limit"],
             resp["retrieve_replies_max_limit"],
             resp["retrieve_quotes_max_limit"],
+            resp["retrieve_feed_max_limit"],
             resp["retrieve_followers_max_limit"],
             resp["retrieve_following_max_limit"],
         )
