@@ -48,7 +48,7 @@ class CDN:
             "action": "download",
             "document": document,
         }
-        server_info = await self._sv._get_cached_server_info()
+        server_info = await self._sv.help.get_server_information()
         async with self._sv.httpx_client.stream(
             "POST", server_info.cdn_server, data=params
         ) as resp:
@@ -92,7 +92,7 @@ class CDN:
             **await async_create_session_id(self._sv.session_storage),
             "action": "upload",
         }
-        server_info = await self._sv._get_cached_server_info()
+        server_info = await self._sv.help.get_server_information()
         if isinstance(file, (str, pathlib.Path)):
             file = open(file, "rb")
         resp = await (

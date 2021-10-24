@@ -247,7 +247,7 @@ class Network:
         **Authentication Required:** Yes
         """
 
-        server_info = await self._sv._get_cached_server_info()
+        server_info = await self._sv.help.get_server_information()
         page = start_page
         while True:
             peers = await self.get_followers(peer, page)
@@ -273,7 +273,7 @@ class Network:
         **Authentication Required:** Yes
         """
 
-        server_info = await self._sv._get_cached_server_info()
+        server_info = await self._sv.help.get_server_information()
         page = start_page
         while True:
             peers = await self.get_following(peer, page)

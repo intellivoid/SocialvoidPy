@@ -71,7 +71,6 @@ class SocialvoidClient:
         self.client_name = client_name
         self.client_version = client_version
         self.client_platform = client_platform or get_platform()
-        self._cached_server_info = None
         self.session = Session(self)
         self.help = Help(self)
         self.network = Network(self)
@@ -95,11 +94,6 @@ class SocialvoidClient:
 
     def __del__(self):
         self.close()
-
-    def _get_cached_server_info(self) -> types.ServerInformation:
-        if not self._cached_server_info:
-            self._cached_server_info = self.help.get_server_information()
-        return self._cached_server_info
 
     def make_request(
         self, *requests: typing.Sequence[Request]
@@ -131,5 +125,6 @@ class SocialvoidClient:
         """
 
         return tuple(
-            int(i) for i in self._get_cached_server_info().protocol_version.split(".")
+            int(i)
+            for i in self.help.get_server_information().protocol_version.split(".")
         )

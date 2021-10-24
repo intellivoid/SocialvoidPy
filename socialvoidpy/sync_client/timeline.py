@@ -303,7 +303,7 @@ class Timeline:
         **Authentication Required:** Yes
         """
 
-        server_info = self._sv._get_cached_server_info()
+        server_info = self._sv.help.get_server_information()
         page = start_page
         while True:
             posts = self.get_feed(page)
@@ -328,7 +328,7 @@ class Timeline:
         **Authentication Required:** Yes
         """
 
-        server_info = self._sv._get_cached_server_info()
+        server_info = self._sv.help.get_server_information()
         page = start_page
         while True:
             peers = self.get_likers(post, page)
@@ -353,7 +353,7 @@ class Timeline:
         **Authentication Required:** Yes
         """
 
-        server_info = self._sv._get_cached_server_info()
+        server_info = self._sv.help.get_server_information()
         page = start_page
         while True:
             peers = self.get_reposters(post, page)
@@ -378,7 +378,7 @@ class Timeline:
         **Authentication Required:** Yes
         """
 
-        server_info = self._sv._get_cached_server_info()
+        server_info = self._sv.help.get_server_information()
         page = start_page
         while True:
             posts = self.get_quotes(post, page)
@@ -403,7 +403,7 @@ class Timeline:
         **Authentication Required:** Yes
         """
 
-        server_info = self._sv._get_cached_server_info()
+        server_info = self._sv.help.get_server_information()
         page = start_page
         while True:
             posts = self.get_replies(post, page)

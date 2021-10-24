@@ -75,7 +75,6 @@ class AsyncSocialvoidClient:
         self.client_name = client_name
         self.client_version = client_version
         self.client_platform = client_platform or get_platform()
-        self._cached_server_info = None
         self.session = Session(self)
         self.help = Help(self)
         self.network = Network(self)
@@ -96,11 +95,6 @@ class AsyncSocialvoidClient:
 
     async def __aexit__(self, exc_type, exc_value, traceback):
         await self.close()
-
-    async def _get_cached_server_info(self) -> types.ServerInformation:
-        if not self._cached_server_info:
-            self._cached_server_info = await self.help.get_server_information()
-        return self._cached_server_info
 
     async def make_request(
         self, *requests: typing.Sequence[Request]
@@ -133,5 +127,7 @@ class AsyncSocialvoidClient:
 
         return tuple(
             int(i)
-            for i in (await self._get_cached_server_info()).protocol_version.split(".")
+            for i in (await self.help.get_server_information()).protocol_version.split(
+                "."
+            )
         )
