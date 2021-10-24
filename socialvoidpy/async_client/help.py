@@ -13,6 +13,7 @@ class Help:
 
     def __init__(self, sv: "AsyncSocialvoidClient"):
         self._sv = sv
+        self._cached_server_info = None
 
     async def get_community_guidelines(self) -> types.HelpDocument:
         """
@@ -40,15 +41,17 @@ class Help:
 
     async def get_server_information(self) -> types.ServerInformation:
         """
-        Retrieves server information
+        Retrieves server information, unlike other methods the result is cached
 
         **Returns:** [`types.ServerInformation`](/types/#serverinformation)
         """
 
-        resp = (
-            await self._sv.make_request(Request("help.get_server_information"))
-        ).unwrap()
-        return types.ServerInformation.from_json(resp)
+        if not self._cached_server_info:
+            resp = (
+                await self._sv.make_request(Request("help.get_server_information"))
+            ).unwrap()
+            self._cached_server_info = types.ServerInformation.from_json(resp)
+        return self._cached_server_info
 
     async def get_terms_of_service(self) -> types.HelpDocument:
         """
