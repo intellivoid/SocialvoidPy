@@ -1,4 +1,3 @@
-import typing
 from dataclasses import dataclass
 from .base_class import BaseClass
 
@@ -30,12 +29,12 @@ class ServerInformation(BaseClass):
     upload_max_file_size: int
     unauthorized_session_ttl: int
     authorized_session_ttl: int
-    retrieve_likes_max_limit: typing.Optional[int]
-    retrieve_reposts_max_limit: typing.Optional[int]
-    retrieve_replies_max_limit: typing.Optional[int]
-    retrieve_quotes_max_limit: typing.Optional[int]
-    retrieve_followers_max_limit: typing.Optional[int]
-    retrieve_following_max_limit: typing.Optional[int]
+    retrieve_likes_max_limit: int
+    retrieve_reposts_max_limit: int
+    retrieve_replies_max_limit: int
+    retrieve_quotes_max_limit: int
+    retrieve_followers_max_limit: int
+    retrieve_following_max_limit: int
 
     @classmethod
     def from_json(cls, resp: dict):
@@ -46,10 +45,10 @@ class ServerInformation(BaseClass):
             resp["upload_max_file_size"],
             resp["unauthorized_session_ttl"],
             resp["authorized_session_ttl"],
-            resp.get("retrieve_likes_max_limit"),
-            resp.get("retrieve_reposts_max_limit"),
-            resp.get("retrieve_replies_max_limit"),
-            resp.get("retrieve_quotes_max_limit"),
-            resp.get("retrieve_followers_max_limit"),
-            resp.get("retrieve_following_max_limit"),
+            resp["retrieve_likes_max_limit"],
+            resp["retrieve_reposts_max_limit"],
+            resp["retrieve_replies_max_limit"],
+            resp["retrieve_quotes_max_limit"],
+            resp["retrieve_followers_max_limit"],
+            resp["retrieve_following_max_limit"],
         )
