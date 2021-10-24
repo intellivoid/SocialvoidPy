@@ -15,12 +15,12 @@ class ServerInformation(BaseClass):
     - **upload_max_file_size** (`int`): Maximum upload file size in bytes
     - **unauthorized_session_ttl** (`int`): How long an unauthorized session can be unused before it expires
     - **authorized_session_ttl** (`int`): How long an authorized session can be unused before it expires
-    - **retrieve_likes_max_limit** (`int`): The maximum amount of likes that can be retrieved at once with `timeline.get_likes` via the `limit` parameter
-    - **retrieve_reposts_max_limit** (`int`): The maximum amount of reposts that can be retrieved at once with `timeline.get_reposted_peers` via the `limit` parameter
-    - **retrieve_replies_max_limit** (`int`): The maximum amount of replies that can be retrieved at once with `timeline.get_replies` via the `limit` parameter
-    - **retrieve_quotes_max_limit** (`int`): The maximum amount of quotes that can be retrieved at once with `timeline.get_quotes` via the `limit` parameter
-    - **retrieve_followers_max_limit** (`int`): The maximum amount of followers that can be retrieved at once with `network.get_followers` via the `limit` parameter
-    - **retrieve_following_max_limit** (`int`): The maximum amount of following peers that can be retrieved at once with `network.get_following` via the `limit` parameter
+    - **retrieve_likes_max_limit** (`int`): The maximum amount of likes that can be retrieved at once with `timeline.get_likes` via the `page` parameter
+    - **retrieve_reposts_max_limit** (`int`): The maximum amount of reposts that can be retrieved at once with `timeline.get_reposted_peers` via the `page` parameter
+    - **retrieve_replies_max_limit** (`int`): The maximum amount of replies that can be retrieved at once with `timeline.get_replies` via the `page` parameter
+    - **retrieve_quotes_max_limit** (`int`): The maximum amount of quotes that can be retrieved at once with `timeline.get_quotes` via the `page` parameter
+    - **retrieve_followers_max_limit** (`int`): The maximum amount of followers that can be retrieved at once with `network.get_followers` via the `page` parameter
+    - **retrieve_following_max_limit** (`int`): The maximum amount of following peers that can be retrieved at once with `network.get_following` via the `page` parameter
     """
 
     network_name: str
