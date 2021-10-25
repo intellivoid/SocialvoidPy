@@ -45,6 +45,7 @@ class SocialvoidClient:
     - **client_version** (`str`, optional): The version of the client, defaults to socialvoidpy's version
     - **client_platform** (`str`, `None`, optional): The platform of the client, defaults to `platform.platform() or "Unknown"`
     - **httpx_client** (`httpx.Client`, `None`, optional): The httpx client for http connection, creates one by default if None
+    - **close_httpx_client** (`bool`, optional): Closes the httpx client on `SocialvoidClient.close()` if true
     """
 
     def __init__(
@@ -58,6 +59,7 @@ class SocialvoidClient:
         client_version: str = version,
         client_platform: typing.Optional[str] = None,
         httpx_client: typing.Optional[httpx.Client] = None,
+        close_httpx_client: bool = True,
     ):
         self.rpc_endpoint = rpc_endpoint
         if httpx_client is None:
@@ -72,6 +74,7 @@ class SocialvoidClient:
         self.client_name = client_name
         self.client_version = client_version
         self.client_platform = client_platform or get_platform()
+        self.close_httpx_client = close_httpx_client
         self.session = Session(self)
         self.help = Help(self)
         self.network = Network(self)
@@ -85,7 +88,8 @@ class SocialvoidClient:
         Closes the session storage and httpx client, should be called after you're finished using the object
         """
         self.session_storage.close()
-        self.httpx_client.close()
+        if self.close_httpx_client:
+            self.httpx_client.close()
 
     def __enter__(self):
         return self
