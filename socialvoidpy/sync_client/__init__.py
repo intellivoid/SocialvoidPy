@@ -44,6 +44,7 @@ class SocialvoidClient:
     - **client_name** (`str`, optional): The name of the client, defaults to SocialvoidPy
     - **client_version** (`str`, optional): The version of the client, defaults to socialvoidpy's version
     - **client_platform** (`str`, `None`, optional): The platform of the client, defaults to `platform.platform() or "Unknown"`
+    - **httpx_client** (`httpx.Client`, `None`, optional): The httpx client for http connection, creates one by default if None
     """
 
     def __init__(
