@@ -46,4 +46,4 @@
 
 ::: socialvoidpy.async_client.Timeline
     :docstring:
-    :members: compose get_post delete like get_feed get_likers get_reposters get_quotes get_replies iter_feed iter_likers iter_reposters iter_quotes iter_replies
+    :members: compose get_post delete like quote reply repost get_feed get_likers get_reposters get_quotes get_replies iter_feed iter_likers iter_reposters iter_quotes iter_replies

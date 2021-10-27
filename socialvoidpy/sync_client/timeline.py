@@ -131,6 +131,120 @@ class Timeline:
         ).unwrap()
 
     @auto_create_session
+    def quote(
+        self,
+        post: typing.Union[str, types.Post],
+        text: str,
+        attachments: typing.Sequence[typing.Union[str, types.Document]] = (),
+    ) -> types.Post:
+        """
+        Quotes a post
+
+        **Parameters:**
+
+        - **post** (`str`, [`types.Post`](/types/#post)): The post to quote
+        - **text** (`str`): The post's contents
+        - **attachments** (`str[]`, [`types.Document[]`](/types/#document), optional): Optional attachments for the post
+
+        **Returns:** [`types.Post`](/types/#post)
+
+        **Authentication Required:** Yes
+        """
+
+        attachments = [
+            i.id if isinstance(i, types.Document) else i for i in attachments
+        ]
+        if isinstance(post, types.Post):
+            post = post.id
+        resp = self._sv.make_request(
+            Request(
+                "timeline.quote",
+                {
+                    "session_identification": create_session_id(
+                        self._sv.session_storage
+                    ),
+                    "post": post,
+                    "text": text,
+                    "attachments": attachments,
+                },
+            )
+        ).unwrap()
+        return types.Post.from_json(resp)
+
+    @auto_create_session
+    def reply(
+        self,
+        post: typing.Union[str, types.Post],
+        text: str,
+        attachments: typing.Sequence[typing.Union[str, types.Document]] = (),
+    ) -> types.Post:
+        """
+        Reply to a post
+
+        **Parameters:**
+
+        - **post** (`str`, [`types.Post`](/types/#post)): The post to reply to
+        - **text** (`str`): The reply's contents
+        - **attachments** (`str[]`, [`types.Document[]`](/types/#document), optional): Optional attachments for the reply
+
+        **Returns:** [`types.Post`](/types/#post)
+
+        **Authentication Required:** Yes
+        """
+
+        attachments = [
+            i.id if isinstance(i, types.Document) else i for i in attachments
+        ]
+        if isinstance(post, types.Post):
+            post = post.id
+        resp = self._sv.make_request(
+            Request(
+                "timeline.reply",
+                {
+                    "session_identification": create_session_id(
+                        self._sv.session_storage
+                    ),
+                    "post": post,
+                    "text": text,
+                    "attachments": attachments,
+                },
+            )
+        ).unwrap()
+        return types.Post.from_json(resp)
+
+    @auto_create_session
+    def repost(
+        self,
+        post: typing.Union[str, types.Post],
+    ) -> types.Post:
+        """
+        Reposts a post
+
+        **Parameters:**
+
+        - **post** (`str`, [`types.Post`](/types/#post)): The post to repost
+
+        **Returns:** [`types.Post`](/types/#post)
+
+        **Authentication Required:** Yes
+        """
+
+        if isinstance(post, types.Post):
+            post = post.id
+        resp = self._sv.make_request(
+            Request(
+                "timeline.repost",
+                {
+                    "session_identification": create_session_id(
+                        self._sv.session_storage
+                    ),
+                    "post": post,
+                },
+            )
+        ).unwrap()
+        return types.Post.from_json(resp)
+
+    @auto_create_session
     def get_feed(self, page: int = 1) -> typing.List[types.Post]:
         """
         Retrieves posts from the user's timeline
