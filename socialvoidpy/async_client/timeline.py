@@ -139,6 +139,34 @@ class Timeline:
         ).unwrap()
 
     @async_auto_create_session
+    async def unlike(self, post: typing.Union[str, types.Post]) -> bool:
+        """
+        Unlikes a post
+
+        **Parameters:**
+
+        - **post** (`str`, [`types.Post`](/types/#post)): The post to unlike
+
+        **Authentication Required:** Yes
+        """
+
+        if isinstance(post, types.Post):
+            post = post.id
+        return (
+            await self._sv.make_request(
+                Request(
+                    "timeline.unlike",
+                    {
+                        "session_identification": await async_create_session_id(
+                            self._sv.session_storage
+                        ),
+                        "post": post,
+                    },
+                )
+            )
+        ).unwrap()
+
+    @async_auto_create_session
     async def quote(
         self,
         post: typing.Union[str, types.Post],
