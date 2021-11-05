@@ -32,7 +32,7 @@ def _unparse(
         if i.type == "BOLD":
             ntext += f"<b>{atext}</b>"
         elif i.type == "ITALIC":
-            ntext += f"<b>{atext}</b>"
+            ntext += f"<i>{atext}</i>"
         elif i.type == "CODE":
             ntext += f"<code>{atext}</code>"
         elif i.type == "STRIKE":
