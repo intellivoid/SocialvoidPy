@@ -48,7 +48,9 @@ def _unparse(
         else:
             raise ValueError(f"Unknown text entity type: {i.type}")
         offset = i.offset + i.length
-    return ntext + html.escape(text[offset : length + noffset])
+    return (ntext + html.escape(text[offset : length + noffset])).replace(
+        "\n", "<br />"
+    )
 
 
 def unparse(text: str, entities: typing.List[_TextEntity]) -> str:
@@ -109,6 +111,8 @@ class _EntityHTMLParser(HTMLParser):
                 # handle_endtag ignores this building entity because url is None
                 url = None
             self._building_entities["URL"].append([URLTextEntity, None, 0, url])
+        elif tag == "br":
+            self.handle_data("\n")
 
     def handle_data(self, data: str):
         for i in self._building_entities.values():
